@@ -4,7 +4,9 @@ import '../styles/Home/HomeStart.css'
 const HomeStart = () => {
   return (
     // contenedor general de la home
+    
     <div className='home'>
+      <h2>Hola</h2>
       {/* filtros */}
       <div className='filters'>
         {/* filtro por precio */}
