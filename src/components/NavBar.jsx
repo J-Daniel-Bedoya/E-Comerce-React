@@ -1,22 +1,28 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import '../styles/navbar/Navbar.css'
+import '../styles/Home/HomeStart.css'
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+
   return (
-    <div>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/login">Login</Nav.Link>
-            <Nav.Link as={Link} to="/products/3">Products</Nav.Link>
-            <Nav.Link as={Link} to="/purchases">Purchases</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+    <div className="Navbar" >
+      <Link to="/" className="nav__icons--logo">
+        <div className=""></div>
+      </Link>
+      <Link to="/login" className="nav__icons user">
+        <div className="">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </Link>
+      <Link to={"/purchases"} className="nav__icons purchases">
+        <div className="">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+      </Link>
+      <div className="nav__icons store">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
     </div>
   );
 };

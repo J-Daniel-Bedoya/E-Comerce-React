@@ -5,15 +5,14 @@ import HomeStart from './pages/HomeStart'
 import LoginUser from './pages/LoginUser'
 import ProductsDetails from './pages/ProductsDetails'
 import Purchases from './pages/Purchases'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/App.css'
 
 function App() {
   return (
-    <div className="App">
-      <HashRouter>
+    <HashRouter>
+      <div className="App">
       
-      
-      <NavBar />
+        <NavBar />
 
 
         <Routes>
@@ -22,8 +21,8 @@ function App() {
           <Route path='/products/:id' element={<ProductsDetails />}/>
           <Route path='/purchases' element={<Purchases />}/>
         </Routes>
-      </HashRouter>
-    </div>
+      </div>
+    </HashRouter>
   )
 }
 
