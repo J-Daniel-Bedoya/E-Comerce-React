@@ -1,0 +1,122 @@
+.loginIn{
+  padding-top: 4rem;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loginIn__card--imgCircle{
+  width: 6.5rem;
+  height: 6.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #7746e9;
+}
+.loginIn__card--container-logo{
+  width: 6rem;
+  height: 6rem;
+  background-color: #0a0947;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.loginIn__card--img{
+  background-image: url('../../../assets/imgs/tienda.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  width: 4rem;
+  height: 3rem;
+  border-radius: 100%;
+
+}
+
+.loginIn__card{
+  background-color: #cfbef0;
+  width: 21rem;
+  height: 35rem;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: .4rem;
+}
+.loginIn__card--form{
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+}
+
+.loginIn__card--input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.loginIn__card--inputBtn{
+  display: flex;
+  align-items: center;
+}
+.loginIn__card--input>input{
+  width: 100%;
+  height: 1.8rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.loginIn__card--input>input:focus{
+  border-bottom: 2px solid #060536;
+}
+.loginIn__card--input label .fa-solid{
+  font-size: 20px;
+  color: #6868ec;
+  text-shadow: 1.5px -1.5px 2px #070839 ;
+}
+.loginIn__card--form button{
+  width: 90%;
+  padding: 5px 0;
+  border-radius: 20px;
+  background-color: #0a0947;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.loginIn__cart--footerForm{
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+.loginIn__cart--footerForm .Link{
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  color: #060536;
+}
+.Link:hover{
+  color: #653fe3;
+  font-weight: 700;
+}
+.isVisible{
+  position: relative;
+  left: 90%;
+  bottom: 30px;
+}

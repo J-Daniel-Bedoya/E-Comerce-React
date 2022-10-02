@@ -1,0 +1,91 @@
+.login{
+  width: 100%;
+  height: 100vh;
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_newUser{
+  width: 17rem;
+  height: 22rem;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid #8ea6a1d8;
+  position: relative;
+  z-index: 2;
+  transition: 1.5s;
+}
+
+.loginIn__card--colorFont{
+  position: absolute;
+  top: 30%;
+  border-radius: 20px;
+  transition: 1.5s;
+  z-index: 1;
+  clip-path: circle(0 at 50% 50%);
+
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient( #7c7ef4, #5532e2 );
+}
+.login_newUser:hover{
+  transition: 1s;
+  background: radial-gradient( #7c7ef4, #5532e2)
+}
+.login_newUser:hover .loginIn__card--colorFont{
+  clip-path: circle(150% at 0% 0%);
+  background: radial-gradient( #7c7ef4, #5532e2 );
+  color: black;
+  cursor: pointer;
+}
+
+.login__container--logo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 50%;
+}
+.login__logo{
+  text-decoration: none;
+  color: rgb(20, 14, 14);
+  box-shadow: 0 0 7px rgba(3, 3, 45, 0.838);
+  width: 9rem;
+  height: 9rem;
+  border-radius: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 1.5s;
+  z-index: 2;
+}
+.login__logo p{
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 2;
+}
+/* .login__logo:hover{
+  color: #110754;
+  transform: scale(1.13);
+  font-size: 18px;
+} */
+.login__img{
+  background-image: url('../../assets/imgs/tienda.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+}

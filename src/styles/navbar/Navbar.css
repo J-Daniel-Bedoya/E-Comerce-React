@@ -3,8 +3,11 @@
   height: 4rem;
   background-color: hsl(257, 83%, 12%);
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   position: fixed;
+}
+.nav__icons--liksPages{
+  display: flex;
 }
 .nav__icons--logo{
   background-image: url('../../assets/imgs/tienda.png');
@@ -13,8 +16,6 @@
   background-size: 60px;
   width: 100px;
   height: 100%;
-  position: relative;
-  right: 56.4%;
   z-index: 3;
   cursor: pointer;
 }
@@ -29,8 +30,8 @@
   cursor: pointer;
 }
 .fa-solid{
-  color: rgba(20, 5, 61, 0.749);
-  text-shadow: 1px -1px 1px #fff;
+  color: rgb(115, 76, 221);
+  text-shadow: 1.5px -1.5px 1px rgb(233, 218, 252);
 
 }
 /* color: rgba(18, 4, 55, 0.749); */

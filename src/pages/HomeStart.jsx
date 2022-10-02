@@ -14,8 +14,8 @@ const HomeStart = () => {
   const [searchProductsFilter, setSearchProductsFilter] = useState([]);
 
   const [searchProductName, setSearchProductName] = useState("");
-  const [searchFrom, setSearchFrom] = useState(0);
-  const [searchTo, setSearchTo] = useState(0);
+  const [searchFrom, setSearchFrom] = useState('');
+  const [searchTo, setSearchTo] = useState('');
 
   useEffect(() => {
     dispatch(getProductsThunk());
@@ -47,9 +47,16 @@ const HomeStart = () => {
     setSearchProductsFilter(filterPrice)
   }
   const filterName = () => {
-    console.log(searchProductName)
-    const filterName = products.filter( product => product.title.includes(searchProductName))
-    setSearchProductsFilter(filterName)
+    const nameInput = searchProductName.toLowerCase()
+    const filterName = products.filter( product => { 
+      return product.title.toLowerCase().includes(nameInput)
+    })
+    console.log(filterName)
+    if (filterName[0].title === searchProductName){
+      setSearchProductsFilter(filterName)
+    }else{
+      alert("El producto no existe")
+    }
   }
 
   return (

@@ -1,10 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import '../styles/Login/LoginUser.css'
 
 const LoginUser = () => {
   return (
-    <div>
-      <h1>world</h1>
+    <div className='login'>
+      <div className='login_newUser'>
+        <div className='login__container--logo'>
+            <h3>Iniciar seción</h3>
+          <div className='loginIn__card--colorFont'>
+            <Link className='login__logo' to={"/login/NewUser"}>
+              <div className='login__img'></div>
+              <p>Login In</p>
+
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
