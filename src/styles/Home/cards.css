@@ -1,5 +1,38 @@
+.products__container--cards{
+  width: 90%;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.products__cards{
+  width: 16rem;
+  height: 22rem;
+  background-color: rgb(221, 205, 251);
+  border-radius: 3px;
+  border: .1rem solid rgb(161, 140, 248);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.products__container--imag{
+  width: 100%;
+  background-color: antiquewhite;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .products__cards--imgs{
-  width: 10rem;
-  height: 10rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 5rem;
+  width: 40rem;
+  height: 50rem;
   
 }

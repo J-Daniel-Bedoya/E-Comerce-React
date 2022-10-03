@@ -134,21 +134,3 @@ hr{
   gap: 5rem;
   z-index: 1;
 }
-.products__container--cards{
-  width: 90%;
-  height: auto;
-  padding: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.products__cards{
-  width: 16rem;
-  height: 22rem;
-  background-color: rgb(221, 205, 251);
-  border-radius: 3px;
-  border: .1rem solid rgb(161, 140, 248);
-  cursor: pointer;
-}

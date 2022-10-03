@@ -21,12 +21,12 @@ const NavBar = () => {
       </Link>
       <div className="nav__icons--liksPages">
         <Link to="/login" className="nav__icons user">
-            <i className="fa-solid fa-user"></i>
+            <i className="fa-solid fa-user nav__icon"></i>
         </Link>
         <Link to={"/purchases"} className="nav__icons purchases">
-            <i className="fa-solid fa-bag-shopping"></i>
+            <i className="fa-solid fa-bag-shopping nav__icon"></i>
         </Link>
-        <div className="nav__icons store" onClick={() => dispatch(setShooping())}>
+        <div className="nav__icons store nav__icon" onClick={() => dispatch(setShooping())}>
           <i className="fa-solid fa-cart-shopping"></i>
         </div>
       </div>

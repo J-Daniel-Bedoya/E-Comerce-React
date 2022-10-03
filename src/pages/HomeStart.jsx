@@ -9,8 +9,6 @@ import ShoppingCart from "../components/ShoppingCart";
 const HomeStart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const shooping = useSelector(state => state.shooping)
-console.log(shooping)
   const [categories, setCategories] = useState([]);
 
   const [searchProductsFilter, setSearchProductsFilter] = useState([]);
@@ -44,7 +42,7 @@ console.log(shooping)
 
   const filterPrice = () => {
     const filterPrice = products.filter( product => {
-      return product.price >= searchFrom && product.price <= searchTo
+      return product.price >= (+searchFrom - 1) && product.price <= (+searchTo + 1)
     })
     setSearchProductsFilter(filterPrice)
   }
@@ -54,7 +52,7 @@ console.log(shooping)
       return product.title.toLowerCase().includes(nameInput)
     })
     console.log(filterName)
-    if (filterName[0].title === searchProductName){
+    if (filterName[0].title.includes(searchProductName)){
       setSearchProductsFilter(filterName)
     }else{
       alert("El producto no existe")
@@ -118,18 +116,14 @@ console.log(shooping)
             value={searchProductName}
             onChange={e => setSearchProductName(e.target.value)}
           />
-          <button onClick={filterName} className="products__input--btn">Ver</button>
+          <button onClick={filterName} className="products__input--btn"><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div className="products__container--cards">
           {
           searchProductsFilter.map((product) => (
             <div className="products__cards" key={product.id}>
-              <div>
-                <img
-                  className="products__cards--imgs"
-                  src={product.productImgs?.[1]}
-                  alt=""
-                />
+              <div className="products__container--imag">
+                <div className="products__cards--imgs" style={{backgroundImage: `url(${product.productImgs?.[0]})`}}></div>
               </div>
               <div>
                 <h4>{product.title}</h4>
@@ -141,9 +135,6 @@ console.log(shooping)
           ))}
         </div>
       </div>
-      {
-        shooping && <ShoppingCart />
-      }
     </div>
   );
 };

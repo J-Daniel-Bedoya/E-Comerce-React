@@ -19,13 +19,13 @@ const Footer = () => {
               <i className="fa-brands fa-github icons"></i></a>         
             <a 
               href="#" target={"_blank"}>
-              <span className="material-symbols-outlined icons">business_center</span></a> 
+              <i className="fa-solid fa-briefcase icons"></i></a> 
             <a 
               href="" target={"_blank"}>
-              <span className="material-symbols-outlined icons">mail</span></a>   
+              <i className="fa-solid fa-envelope icons"></i></a>   
             <a 
               href="" target={"_blank"}>
-              <span className="material-symbols-outlined icons">call</span></a>  
+              <i className="fa-solid fa-phone icons"></i></a>  
           </div>
         </div>
         <div className='footer__info'>
@@ -34,9 +34,9 @@ const Footer = () => {
           <div className='footer__icons'>
             <a href="#" target={"_blank"}><i className="fa-brands fa-linkedin-in icons"></i></a>
             <a href="#" target={"_blank"}><i className="fa-brands fa-github icons"></i></a>
-            <a href="#" target={"_blank"}><span className="material-symbols-outlined icons">business_center</span></a>
-            <a href="#" target={"_blank"}><span className="material-symbols-outlined icons">mail</span></a>
-            <a href="#" target={"_blank"}><span className="material-symbols-outlined icons">call</span></a>
+            <a href="#" target={"_blank"}><i className="fa-solid fa-briefcase icons"></i></a>
+            <a href="#" target={"_blank"}><i className="fa-solid fa-envelope icons"></i></a>
+            <a href="#" target={"_blank"}><i className="fa-solid fa-phone icons"></i></a>
           </div>
         </div>
       </div>
