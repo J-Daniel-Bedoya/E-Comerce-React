@@ -111,6 +111,7 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  border: 1px solid #0a0947;
 }
 /* footer del formulario */
 .signUp__cart--footerForm{
