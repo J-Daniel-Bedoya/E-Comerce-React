@@ -5,21 +5,18 @@ import axios from "axios";
 import "../styles/Home/HomeStart.css";
 import "../styles/Home/cards.css";
 import ShoppingCart from "../components/ShoppingCart";
+import { useNavigate } from "react-router-dom";
 
 const HomeStart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const products = useSelector((state) => state.products);
   const [categories, setCategories] = useState([]);
-
   const [searchProductsFilter, setSearchProductsFilter] = useState([]);
-
   const [searchProductName, setSearchProductName] = useState("");
   const [searchFrom, setSearchFrom] = useState('');
   const [searchTo, setSearchTo] = useState('');
 
-  useEffect(() => {
-    dispatch(getProductsThunk());
-  }, []);
 
   useEffect(() => {
     axios
@@ -130,7 +127,7 @@ const HomeStart = () => {
                 <p>Price</p>
                 <b>{product.price}</b>
               </div>
-              <button>Ver</button>
+              <button onClick={() => navigate(`/product/${product.id}`)} >Ver</button>
             </div>
           ))}
         </div>

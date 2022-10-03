@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
   
 const ProtectedRoutes = () => {
   
-  if(false){
+  if(true){
     return <Outlet />
   } else { 
     return <Navigate to='/' />

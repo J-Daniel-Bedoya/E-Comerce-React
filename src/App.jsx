@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import LoginUp from './components/LoginUp'
@@ -29,7 +30,7 @@ function App() {
           <Route path='/login/LoginUp' element={<LoginUp />}/>
 
           <Route element={<ProtectedRoutes />}>
-            <Route path='/products/:id' element={<ProductsDetails />}/>
+            <Route path='/product/:id' element={<ProductsDetails />}/>
             <Route path='/purchases' element={<Purchases />}/>
           </Route>
         </Routes>
