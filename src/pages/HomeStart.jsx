@@ -19,11 +19,9 @@ console.log(shooping)
   const [searchFrom, setSearchFrom] = useState('');
   const [searchTo, setSearchTo] = useState('');
 
-  useEffect(() => {
-    dispatch(getProductsThunk());
-  }, []);
 
   useEffect(() => {
+    dispatch(getProductsThunk());
     axios
       .get(
         "https://ecommerce-api-react.herokuapp.com/api/v1/products/categories"
@@ -44,7 +42,7 @@ console.log(shooping)
 
   const filterPrice = () => {
     const filterPrice = products.filter( product => {
-      return product.price >= searchFrom && product.price <= searchTo
+      return product.price >= (+searchFrom - 1) && product.price <= (+searchTo + 1)
     })
     setSearchProductsFilter(filterPrice)
   }
@@ -54,7 +52,7 @@ console.log(shooping)
       return product.title.toLowerCase().includes(nameInput)
     })
     console.log(filterName)
-    if (filterName[0].title === searchProductName){
+    if (filterName[0].title(searchProductName)){
       setSearchProductsFilter(filterName)
     }else{
       alert("El producto no existe")
