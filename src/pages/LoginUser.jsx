@@ -11,7 +11,7 @@ const LoginUser = () => {
           <div className='loginIn__card--colorFont'>
             <Link className='login__logo' to={"/login/LoginUp"}>
               <div className='login__img'></div>
-              <p>Sign Up</p>
+              <p>Login Up</p>
 
             </Link>
           </div>
