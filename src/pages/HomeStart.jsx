@@ -52,7 +52,7 @@ console.log(shooping)
       return product.title.toLowerCase().includes(nameInput)
     })
     console.log(filterName)
-    if (filterName[0].title(searchProductName)){
+    if (filterName[0].title.includes(searchProductName)){
       setSearchProductsFilter(filterName)
     }else{
       alert("El producto no existe")
