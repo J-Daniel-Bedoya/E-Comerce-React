@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import LoginUp from './components/LoginUp'
@@ -9,9 +10,22 @@ import HomeStart from './pages/HomeStart'
 import LoginUser from './pages/LoginUser'
 import ProductsDetails from './pages/ProductsDetails'
 import Purchases from './pages/Purchases'
+import { getProductsThunk } from './store/slices/products.slice'
 import './styles/App.css'
 
 function App() {
+
+
+  // jose me traje el getProductsThunk de homeStart a App que esa informacion de los productos las usemos en todos los componentes que sean necesarias, me explico si la hubiera dejalo solo en homeStar no me hubiera para ProductDetails, entonces lo coloque aca para que me sirviera de manera mas "global"
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductsThunk());
+  }, [])
+
+
+
+
+
   return (
     <HashRouter>
       <div className="App">
@@ -26,7 +40,7 @@ function App() {
           <Route path='/login/LoginUp' element={<LoginUp />}/>
 
           <Route element={<ProtectedRoutes />}>
-            <Route path='/products/:id' element={<ProductsDetails />}/>
+            <Route path='/product/:id' element={<ProductsDetails />}/>
             <Route path='/purchases' element={<Purchases />}/>
           </Route>
         </Routes>

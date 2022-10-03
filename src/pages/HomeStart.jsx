@@ -5,23 +5,22 @@ import axios from "axios";
 import "../styles/Home/HomeStart.css";
 import "../styles/Home/cards.css";
 import ShoppingCart from "../components/ShoppingCart";
+import { useNavigate } from "react-router-dom";
 
 const HomeStart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const products = useSelector((state) => state.products);
   const shooping = useSelector(state => state.shooping)
-console.log(shooping)
+//console.log(shooping)
   const [categories, setCategories] = useState([]);
-
   const [searchProductsFilter, setSearchProductsFilter] = useState([]);
-
   const [searchProductName, setSearchProductName] = useState("");
   const [searchFrom, setSearchFrom] = useState('');
   const [searchTo, setSearchTo] = useState('');
 
 
   useEffect(() => {
-    dispatch(getProductsThunk());
     axios
       .get(
         "https://ecommerce-api-react.herokuapp.com/api/v1/products/categories"
@@ -51,7 +50,7 @@ console.log(shooping)
     const filterName = products.filter( product => { 
       return product.title.toLowerCase().includes(nameInput)
     })
-    console.log(filterName)
+    //console.log(filterName)
     if (filterName[0].title.includes(searchProductName)){
       setSearchProductsFilter(filterName)
     }else{
@@ -121,7 +120,7 @@ console.log(shooping)
         <div className="products__container--cards">
           {
           searchProductsFilter.map((product) => (
-            <div className="products__cards" key={product.id}>
+            <div className="products__cards"  key={product.id}>
               <div>
                 <img
                   className="products__cards--imgs"
@@ -134,7 +133,7 @@ console.log(shooping)
                 <p>Price</p>
                 <b>{product.price}</b>
               </div>
-              <button>Ver</button>
+              <button onClick={() => navigate(`/product/${product.id}`)} >Ver</button>
             </div>
           ))}
         </div>
