@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsThunk } from "../store/slices/products.slice";
+import axios from "axios";
 import "../styles/Home/HomeStart.css";
 import "../styles/Home/cards.css";
-import axios from "axios";
+import ShoppingCart from "../components/ShoppingCart";
 
 const HomeStart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-
+  const shooping = useSelector(state => state.shooping)
+console.log(shooping)
   const [categories, setCategories] = useState([]);
 
   const [searchProductsFilter, setSearchProductsFilter] = useState([]);
@@ -139,6 +141,9 @@ const HomeStart = () => {
           ))}
         </div>
       </div>
+      {
+        shooping && <ShoppingCart />
+      }
     </div>
   );
 };

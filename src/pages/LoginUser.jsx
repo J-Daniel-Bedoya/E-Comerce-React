@@ -9,9 +9,9 @@ const LoginUser = () => {
         <div className='login__container--logo'>
             <h3>Iniciar seción</h3>
           <div className='loginIn__card--colorFont'>
-            <Link className='login__logo' to={"/login/NewUser"}>
+            <Link className='login__logo' to={"/login/SignUp"}>
               <div className='login__img'></div>
-              <p>Login In</p>
+              <p>Sign Up</p>
 
             </Link>
           </div>

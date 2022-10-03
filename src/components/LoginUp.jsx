@@ -33,7 +33,7 @@ const LoginUp = () => {
             <button>Login Up</button>
           </div>
         </form>
-        <p className='loginUp__cart--footerForm'>Ya tienes cuenta? <Link className='Link' to={"/login/NewUser"}>Login In</Link></p>
+        <p className='loginUp__cart--footerForm'>Ya tienes cuenta? <Link className='Link' to={"/login/SignUp"}>Sign Up</Link></p>
       </div>
     </div>
   );

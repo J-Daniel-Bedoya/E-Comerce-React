@@ -3,9 +3,12 @@ import '../styles/footer/Footer.css'
 
 const Footer = () => {
   return (
+
     <div className='footer'>
       <div className='footer__contex'>
+        {/* contenedor de la información de contacto */}
         <div className='footer__info'>
+          {/* información individual */}
           <p>Daniel Bedoya</p>
           <div className='footer__icons'>
             <a 
@@ -26,6 +29,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='footer__info'>
+          {/* información individual */}
           <p>Oween Unda</p>
           <div className='footer__icons'>
             <a href="#" target={"_blank"}><i className="fa-brands fa-linkedin-in icons"></i></a>

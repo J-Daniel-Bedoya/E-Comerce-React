@@ -126,7 +126,6 @@ hr{
   left: 18.8%;
   width: 83%;
   height: auto;
-  /* background-color: blueviolet; */
   margin-top: 4rem;
   padding-top: 5rem;
   display: flex;
@@ -138,7 +137,6 @@ hr{
 .products__container--cards{
   width: 90%;
   height: auto;
-  /* background-color: aquamarine; */
   padding: 2rem;
   display: flex;
   flex-wrap: wrap;

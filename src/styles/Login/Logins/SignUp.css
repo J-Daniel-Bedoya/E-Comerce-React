@@ -1,4 +1,5 @@
-.loginIn{
+/* contenedor general del login in */
+.signUp{
   padding-top: 4rem;
   width: 100%;
   height: 100vh;
@@ -7,10 +8,11 @@
   justify-content: center;
   align-items: center;
 }
-.loginIn__card--imgCircle{
+/* circulo del logo */
+.signUp__card--imgCircle{
   width: 6.5rem;
   height: 6.5rem;
-  margin-top: 1rem;
+  margin-top: .2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,9 +21,11 @@
   text-align: center;
   background-color: #7746e9;
 }
-.loginIn__card--container-logo{
+/* logo del e-commerce */
+.signUp__card--container-logo{
   width: 6rem;
   height: 6rem;
+  padding-top: 1rem;
   background-color: #0a0947;
   display: flex;
   flex-direction: column;
@@ -31,8 +35,8 @@
   text-align: center;
   color: #fff;
 }
-
-.loginIn__card--img{
+/* imagen del logo  */
+.signUp__card--img{
   background-image: url('../../../assets/imgs/tienda.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -42,11 +46,11 @@
   border-radius: 100%;
 
 }
-
-.loginIn__card{
+/* contenedor del formulario */
+.signUp__card{
   background-color: #cfbef0;
   width: 21rem;
-  height: 35rem;
+  height: 38rem;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -54,43 +58,51 @@
   align-items: center;
   padding: 0 1.5rem;
   gap: .4rem;
+  margin-top: 4rem;
+  padding-bottom: 2rem;
 }
-.loginIn__card--form{
+/* formulario */
+.signUp__card--form{
   width: 100%;
   height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
-
-.loginIn__card--input{
+/* contenedor de losinputs del formulario */
+.signUp__card--input{
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 4px;
 }
-.loginIn__card--inputBtn{
+/* contenedor del boton del formulario */
+.signUp__card--inputBtn{
   display: flex;
   align-items: center;
 }
-.loginIn__card--input>input{
+/* inputs del formularios */
+.signUp__card--input>input{
   width: 100%;
   height: 1.8rem;
   border: none;
   outline: none;
   border-radius: 5px;
+  padding: 0 10px;
 }
-.loginIn__card--input>input:focus{
+.signUp__card--input>input:focus{
   border-bottom: 2px solid #060536;
 }
-.loginIn__card--input label .fa-solid{
+/* estilos de los iconos de los inputs */
+.signUp__card--input label .fa-solid{
   font-size: 20px;
   color: #6868ec;
   text-shadow: 1.5px -1.5px 2px #070839 ;
 }
-.loginIn__card--form button{
+/* boton de submit del formulario */
+.signUp__card--form button{
   width: 90%;
   padding: 5px 0;
   border-radius: 20px;
@@ -100,12 +112,12 @@
   font-weight: 500;
   cursor: pointer;
 }
-
-.loginIn__cart--footerForm{
+/* footer del formulario */
+.signUp__cart--footerForm{
   font-size: 13px;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
-.loginIn__cart--footerForm .Link{
+.signUp__cart--footerForm .Link{
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;

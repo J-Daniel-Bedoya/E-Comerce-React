@@ -1,0 +1,127 @@
+/* fondo opaco */
+.container--shooping {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 5, 50, 0.386);
+  position: fixed;
+  left: 0;
+  z-index: 15;
+}
+/* contenedor del cart */
+.shooping {
+  width: 24%;
+  height: 90.5%;
+  background-color: rgb(244, 244, 246);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: .5rem;
+  align-items: center;
+  border-radius: 15px;
+  z-index: 20;
+}
+/* circulo del logo del e-commerce */
+.shooping__card--imgCircle {
+  width: 6.5rem;
+  height: 18%;
+  margin-top: .2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 100%;
+  text-align: center;
+  background-color: #7746e9;
+}
+/* logo del e-commerce */
+.shooping__card--container-logo {
+  width: 6rem;
+  height: 6rem;
+  padding-top: 1rem;
+  background-color: #0a0947;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 100%;
+  text-align: center;
+  color: #fff;
+}
+/* img del logo */
+.shooping__card--img {
+  background-image: url('../../assets/imgs/tienda.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px;
+  width: 4rem;
+  height: 3rem;
+  border-radius: 100%;
+}
+/* conetenedor de todos los productos seleccionados */
+.shooping__container--products {
+  width: 100%;
+  height: 73%;
+  margin-top: .5rem;
+  overflow: auto;
+  padding: 1rem;
+}
+/* productos seleccionados */
+.shooping__container--products::-webkit-scrollbar {
+  width: 1.5px;
+  height: 1.5px;
+  background-color: #8886f1;
+}
+/* barra de scroll para el contenedor de productos seleccionados */
+.shooping__container--products::-webkit-scrollbar-thumb {
+  width: 1px;
+  height: 1px;
+  background-color: #08073b;
+}
+/* barra de scroll para el contenedor de productos seleccionados */
+.shooping__container--checkout {
+  width: 100%;
+  height: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* contenedor del boton de chechout */
+.shooping__container--checkout button {
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1a0747;
+  color: #fff;
+}
+/* card de productos seleccionados */
+.shooping__cart {
+  height: 4.5rem;
+  background-color: #7746e9;
+  margin-bottom: 15px;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  border-radius: 5px;
+
+}
+/* imagne del producto seleccionados */
+.shooping__cart--img {
+  background-color: rgb(228, 170, 170);
+  background-image: url('../../assets/imgs/tienda.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 55px;
+  border-radius: 5px 0 0 5px;
+  width: 70px;
+  height: 100%;
+}
+/* nombre del producto seleccionado */
+.shooping__cart h3 {
+  font-size: 14px;
+}
+/* precio del producto seleccionado */
+.shooping__cart p {
+  font-size: 13px;
+}
