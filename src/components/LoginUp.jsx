@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import '../styles/Login/Logins/LoginUp.css';
 
 const LoginUp = () => {
   const [isVisible, setIsVisible] = useState(true)
-
-
+  const { register, handleSubmit } = useForm();
+  const submit = (data) =>{
+    alert("entrando")
+  }
   return (
     <div className='loginUp'>
       <div className='loginUp__card'>
@@ -15,14 +18,14 @@ const LoginUp = () => {
             <h5>Login In</h5>
           </div>
         </div>
-        <form action="" className='loginUp__card--form'>
+        <form onSubmit={handleSubmit(submit)} action="" className='loginUp__card--form'>
           <div className='loginUp__card--input'>
             <label htmlFor="email"><i className="fa-solid fa-envelope"></i></label>
-            <input id='email' type="email" />
+            <input id='email' type="email"  {...register("email")} />
           </div>
           <div className='loginUp__card--input'>
             <label htmlFor="password"><i className="fa-solid fa-lock"></i></label>
-            <input id='password' type={isVisible ? "password" : "text"}/>
+            <input id='password' type={isVisible ? "password" : "text"}  {...register("password")} />
             <div onClick={() => setIsVisible(!isVisible)} className="isVisible">
               {
                 isVisible ? <i className="fa-regular fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>

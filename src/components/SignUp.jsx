@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import '../styles/Login/Logins/SignUp.css';
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(true)
-
+  const { register, handleSubmit } = useForm();
   
   return (
     <div className='signUp'>
@@ -17,16 +18,16 @@ const SignUp = () => {
         </div>
         <form action="" className='signUp__card--form'>
           <div className='signUp__card--input'>
-            <label htmlFor="text"><i className="fa-solid fa-user"></i></label>
-            <input id='text' type="text" placeholder="First Name" />
+            <label htmlFor="FirstName"><i className="fa-solid fa-user"></i></label>
+            <input id='FirstName' type="text" placeholder="First Name" />
           </div>
           <div className='signUp__card--input'>
-            <label htmlFor="text"><i className="fa-solid fa-user"></i></label>
-            <input id='text' type="text" placeholder="Last Name" />
+            <label htmlFor="LastName"><i className="fa-solid fa-user"></i></label>
+            <input id='LastName' type="text" placeholder="Last Name" />
           </div>
           <div className='signUp__card--input'>
-            <label htmlFor="number"><i className="fa-solid fa-phone"></i></label>
-            <input id='number' type="number" placeholder="Phone" />
+            <label htmlFor="Phone"><i className="fa-solid fa-phone"></i></label>
+            <input id='Phone' type="number" placeholder="Phone" />
           </div>
           <div className='signUp__card--input'>
             <label htmlFor="email"><i className="fa-solid fa-envelope"></i></label>
