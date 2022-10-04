@@ -103,6 +103,9 @@ const HomeStart = () => {
           <h2>Category</h2>
           <hr />
           <ul className="filter__category--ul">
+            <li onClick={() =>  dispatch(getProductsThunk())} > {/* jose este lo añadi para que me traiga todos lo productos */}
+            All  products
+            </li>
             {categories.map((category) => (
               <li onClick={() => filterId(category.id)} key={category.id}>
                 {category.name}

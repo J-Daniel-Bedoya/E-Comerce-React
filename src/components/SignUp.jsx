@@ -1,11 +1,40 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Login/Logins/SignUp.css';
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(true)
+  const { register, handleSubmit, reset } = useForm();
+  const Navigate = useNavigate()
 
-  
+  const submit = (data) => {
+    //console.log(data);
+    axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users`, data)
+      .then(res => {
+        alert("usuario registado")
+        console.log(res?.data?.data)
+        clear()
+        Navigate("/")
+      })
+      .catch(error => {
+        alert("error al crear el usuario!")
+        console.log(error?.data?.data)
+      })
+  }
+
+  // esta funcion me borra lo elementos del input
+  const clear = () =>{
+    reset({
+      firstName: "",
+      lastName: "",
+      phone: "",
+      email: "",
+      password: ""  
+    })
+  }
+
   return (
     <div className='signUp'>
       <div className='signUp__card'>
@@ -15,27 +44,27 @@ const SignUp = () => {
             <h5>Sign Up</h5>
           </div>
         </div>
-        <form action="" className='signUp__card--form'>
+        <form onSubmit={handleSubmit(submit)} className='signUp__card--form'>
           <div className='signUp__card--input'>
-            <label htmlFor="text"><i className="fa-solid fa-user"></i></label>
-            <input id='text' type="text" placeholder="First Name" />
+            <label htmlFor="FirstName"><i className="fa-solid fa-user"></i></label>
+            <input id='FirstName' type="text" placeholder="First Name" {...register("firstName")} />
           </div>
           <div className='signUp__card--input'>
-            <label htmlFor="text"><i className="fa-solid fa-user"></i></label>
-            <input id='text' type="text" placeholder="Last Name" />
+            <label htmlFor="LastName"><i className="fa-solid fa-user"></i></label>
+            <input id='LastName' type="text" placeholder="Last Name" {...register("lastName")}/>
           </div>
           <div className='signUp__card--input'>
-            <label htmlFor="number"><i className="fa-solid fa-phone"></i></label>
-            <input id='number' type="number" placeholder="Phone" />
+            <label htmlFor="Phone"><i className="fa-solid fa-phone"></i></label>
+            <input id='Phone' type="number" placeholder="Phone" {...register("phone")}/>
           </div>
           <div className='signUp__card--input'>
             <label htmlFor="email"><i className="fa-solid fa-envelope"></i></label>
-            <input id='email' type="email" placeholder="Email" />
+            <input id='email' type="email" placeholder="Email" {...register("email")}/>
           </div>
           <div className='signUp__card--input'>
             {/* <i class="fa-solid fa-lock-open"></i> */}
             <label htmlFor="password"><i className="fa-solid fa-lock"></i></label>
-            <input id='password' type={isVisible ? "password" : "text"} placeholder="Password" />
+            <input id='password' type={isVisible ? "password" : "text"} placeholder="Password" {...register("password")}/>
             <div onClick={() => setIsVisible(!isVisible)} className="isVisible">
               {
                 isVisible ? <i className="fa-regular fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>
@@ -46,7 +75,7 @@ const SignUp = () => {
             <button>Sign Up</button>
           </div>
         </form>
-        <p className='signUp__cart--footerForm'>Ya tienes cuenta? <Link className='Link' to={"/login/LoginUp"}>Login Up</Link></p>
+        <p className='signUp__cart--footerForm'>Do you already have an account? <Link className='Link' to={"/login/LoginUp"}>Login Up</Link></p>
       </div>
 
     </div>
