@@ -87,6 +87,7 @@
   border: none;
   outline: none;
   border-radius: 5px;
+  padding: 0 10px;
 }
 .loginUp__card--input>input:focus{
   border-bottom: 2px solid #060536;
@@ -108,6 +109,7 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  border: 1px solid #0a0947;
 }
 /* footer del formulario */
 .loginUp__cart--footerForm{

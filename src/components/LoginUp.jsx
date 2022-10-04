@@ -21,7 +21,7 @@ const LoginUp = () => {
         <form onSubmit={handleSubmit(submit)} action="" className='loginUp__card--form'>
           <div className='loginUp__card--input'>
             <label htmlFor="email"><i className="fa-solid fa-envelope"></i></label>
-            <input id='email' type="email"  {...register("email")} />
+            <input id='email' type="email" />
           </div>
           <div className='loginUp__card--input'>
             <label htmlFor="password"><i className="fa-solid fa-lock"></i></label>
@@ -36,7 +36,7 @@ const LoginUp = () => {
             <button>Login Up</button>
           </div>
         </form>
-        <p className='loginUp__cart--footerForm'>Ya tienes cuenta? <Link className='Link' to={"/login/SignUp"}>Sign Up</Link></p>
+        <p className='loginUp__cart--footerForm'>Don't have account? <Link className='Link' to={"/login/SignUp"}>Sign Up</Link></p>
       </div>
     </div>
   );

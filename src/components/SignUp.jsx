@@ -47,7 +47,7 @@ const SignUp = () => {
             <button>Sign Up</button>
           </div>
         </form>
-        <p className='signUp__cart--footerForm'>Ya tienes cuenta? <Link className='Link' to={"/login/LoginUp"}>Login Up</Link></p>
+        <p className='signUp__cart--footerForm'>Do you already have an account? <Link className='Link' to={"/login/LoginUp"}>Login Up</Link></p>
       </div>
 
     </div>
