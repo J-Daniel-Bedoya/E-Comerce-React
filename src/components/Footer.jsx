@@ -32,8 +32,8 @@ const Footer = () => {
           {/* información individual */}
           <p>Oween Unda</p>
           <div className='footer__icons'>
-            <a href="#" target={"_blank"}><i className="fa-brands fa-linkedin-in icons"></i></a>
-            <a href="#" target={"_blank"}><i className="fa-brands fa-github icons"></i></a>
+            <a href="https://www.linkedin.com/in/oweenunda/" target={"_blank"}><i className="fa-brands fa-linkedin-in icons"></i></a>
+            <a href="https://github.com/owenunda" target={"_blank"}><i className="fa-brands fa-github icons"></i></a>
             <a href="#" target={"_blank"}><span className="material-symbols-outlined icons">business_center</span></a>
             <a href="#" target={"_blank"}><span className="material-symbols-outlined icons">mail</span></a>
             <a href="#" target={"_blank"}><span className="material-symbols-outlined icons">call</span></a>

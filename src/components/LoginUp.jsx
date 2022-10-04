@@ -1,13 +1,30 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Login/Logins/LoginUp.css';
 
 const LoginUp = () => {
   const [isVisible, setIsVisible] = useState(true)
   const { register, handleSubmit } = useForm();
+  const Navigate = useNavigate()
+
+  // funcion que inicia sesion el cuenta
   const submit = (data) =>{
-    alert("entrando")
+    axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users/login`, data)
+      .then(res => {
+        console.log(res.data.data)
+        alert("usuarioLogeado")
+        localStorage.setItem("token", res.data.data.token)
+        Navigate("/")
+      })
+
+
+        .catch(error => {
+          if(error.response?.status === 404)
+          alert("credenciales invalidas") 
+          console.log(error.response)
+        })
   }
   return (
     <div className='loginUp'>
@@ -18,13 +35,13 @@ const LoginUp = () => {
             <h5>Login In</h5>
           </div>
         </div>
-        <form onSubmit={handleSubmit(submit)} action="" className='loginUp__card--form'>
-          <div className='loginUp__card--input'>
-            <label htmlFor="email"><i className="fa-solid fa-envelope"></i></label>
-            <input id='email' type="email" />
+        <form onSubmit={handleSubmit(submit)}className='loginUp__card--form'>
+          <div  className='loginUp__card--input'>
+            <label htmlFor="email"><i className="fa-solid fa-envelope"></i> Email </label>
+            <input id='email' type="email" {...register("email")} />
           </div>
           <div className='loginUp__card--input'>
-            <label htmlFor="password"><i className="fa-solid fa-lock"></i></label>
+            <label htmlFor="password"><i className="fa-solid fa-lock"></i> Password </label>
             <input id='password' type={isVisible ? "password" : "text"}  {...register("password")} />
             <div onClick={() => setIsVisible(!isVisible)} className="isVisible">
               {

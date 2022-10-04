@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setShooping } from "../store/slices/shoopingTrue.slice";
 import { useDispatch } from "react-redux";
 import '../styles/Home/HomeStart.css'
@@ -8,7 +8,14 @@ import '../styles/navbar/Navbar.css'
 const NavBar = () => {
 
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
+  // funcion que elimina el token o que cierra sesion de la cuenta
+  const logout = () =>{
+    localStorage.setItem("token", "")
+  }
+
+
+
   return (
     <div className="Navbar" >
       <Link to="/" className="nav__icons--logo">
@@ -25,6 +32,9 @@ const NavBar = () => {
         </Link>
         <Link to={"/purchases"} className="nav__icons purchases">
             <i className="fa-solid fa-bag-shopping"></i>
+        </Link>
+        <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
+            <p>LOGOUT</p>
         </Link>
         <div className="nav__icons store" onClick={() => dispatch(setShooping())}>
           <i className="fa-solid fa-cart-shopping"></i>

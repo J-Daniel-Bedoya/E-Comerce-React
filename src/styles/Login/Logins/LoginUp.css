@@ -93,6 +93,12 @@
   border-bottom: 2px solid #060536;
   padding: 0 10px;
 }
+/* estilos a los label*/
+.loginUp__card--input label{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
 /* estilos de los iconos de los inputs */
 .loginUp__card--input label .fa-solid{
   font-size: 20px;
@@ -110,6 +116,7 @@
   font-weight: 500;
   cursor: pointer;
   border: 1px solid #0a0947;
+  margin: auto;
 }
 /* footer del formulario */
 .loginUp__cart--footerForm{
