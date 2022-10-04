@@ -124,7 +124,7 @@ const HomeStart = () => {
           {
           searchProductsFilter.map((product) => (
             <div className="products__cards"  key={product.id}>
-              <div>
+              <div className="containerImg" >  
                 <img
                   className="products__cards--imgs"
                   src={product.productImgs?.[1]}

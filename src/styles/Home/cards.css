@@ -1,5 +1,13 @@
+.products__cards .containerImg{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  height: 200px;
+}
 .products__cards--imgs{
   width: 10rem;
   height: 10rem;
-  
+  object-fit: contain;
 }
