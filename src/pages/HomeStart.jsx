@@ -4,8 +4,8 @@ import { getProductsThunk } from "../store/slices/products.slice";
 import axios from "axios";
 import "../styles/Home/HomeStart.css";
 import "../styles/Home/cards.css";
-import ShoppingCart from "../components/ShoppingCart";
 import { useNavigate } from "react-router-dom";
+import { getSetAddProduct } from "../store/slices/addProduct.slice";
 
 const HomeStart = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,9 @@ const HomeStart = () => {
   const [searchFrom, setSearchFrom] = useState('');
   const [searchTo, setSearchTo] = useState('');
 
+  useEffect(() => {
+    dispatch(getProductsThunk())
+  }, [])
 
   useEffect(() => {
     axios
@@ -54,6 +57,10 @@ const HomeStart = () => {
     }else{
       alert("El producto no existe")
     }
+  }
+
+  const agregar = () => {
+
   }
 
   return (
@@ -115,19 +122,20 @@ const HomeStart = () => {
           />
           <button onClick={filterName} className="products__input--btn"><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <div className="products__container--cards">
+        <div className="products__container--cards" >
           {
           searchProductsFilter.map((product) => (
             <div className="products__cards" key={product.id}>
-              <div className="products__container--imag">
-                <div className="products__cards--imgs" style={{backgroundImage: `url(${product.productImgs?.[0]})`}}></div>
+              {/* quise hacer que las card fueran clicables y que al hacer click muestren el producto en detalle */}
+              <div className="products__container--imag" onClick={() => navigate(`/product/${product.id}`)}>
+                <div className="products__cards--imgs" style={{backgroundImage: `url(${product.productImgs?.[0]})`}} onClick={() => navigate(`/product/${product.id}`)}></div>
               </div>
-              <div>
+              <div onClick={() => navigate(`/product/${product.id}`)}>
                 <h4>{product.title}</h4>
                 <p>Price</p>
                 <b>{product.price}</b>
               </div>
-              <button onClick={() => navigate(`/product/${product.id}`)} >Ver</button>
+              <button style={{cursor: "pointer"}} className="products__btn--add" onClick={() => dispatch(getSetAddProduct(product.id))}>Agregar</button> {/* este boton es el encargado de agregar los productos para poder los comprar en la parte de cart */}
             </div>
           ))}
         </div>
