@@ -37,7 +37,7 @@ const NavBar = () => {
             <p>LOGOUT</p>
         </Link>
         <div className="nav__icons store" onClick={() => dispatch(setShooping())}>
-          <i className="fa-solid fa-cart-shopping"></i>
+          <i className="fa-solid fa-cart-shopping nav__icon"></i>
         </div>
       </div>
 

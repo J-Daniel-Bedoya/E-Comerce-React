@@ -25,7 +25,7 @@ const Purchases = () => {
                 <div style={{marginBottom: "1.5rem", display: 'flex', alignItems: "center", width: "60%",  justifyContent: "space-between"}}  key={product.id}> {/* este es mas es container que contiene la info del produto que compro */}
                   <p> {product.title} hola </p>
                   <b> {product.productsInCart.quantity} {/* aca esta la cantidad de productos que compro */} </b>
-                  <p> ${product.price}  {/* este es el total de cuanto de la cantidades que compro aun nose cuanto poner pq solo son unas compras pero si requiere funcionaliad que cambie yo la hago facilmente (product.price * product.productsInCart.quantity ) */} </p>
+                  <p> $ {product.price * product.productsInCart.quantity}  {/* este es el total de cuanto de la cantidades que compro aun nose cuanto poner pq solo son unas compras pero si requiere funcionaliad que cambie yo la hago facilmente (product.price * product.productsInCart.quantity ) */} </p>
                 </div>
               ))
             }
