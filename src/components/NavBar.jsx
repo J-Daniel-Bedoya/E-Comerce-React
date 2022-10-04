@@ -33,14 +33,10 @@ const NavBar = () => {
         <Link to={"/purchases"} className="nav__icons purchases">
             <i className="fa-solid fa-bag-shopping nav__icon"></i>
         </Link>
-<<<<<<< HEAD
-        <div className="nav__icons store nav__icon" onClick={() => dispatch(setShooping())}>
-=======
         <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
             <p>LOGOUT</p>
         </Link>
         <div className="nav__icons store" onClick={() => dispatch(setShooping())}>
->>>>>>> 23a0bbfd0c7d0e9bfcf592b5f7d6edbb373211fc
           <i className="fa-solid fa-cart-shopping"></i>
         </div>
       </div>
