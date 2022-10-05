@@ -1,0 +1,26 @@
+.productDetails{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 6rem;
+  background-color: rgb(167, 235, 212);
+}
+.productDetail__info{
+  background-color: blue;
+  display: flex;
+}
+.productDetail__container--imgs{
+  background-color: aqua;
+  width: 50%;
+}
+.productDetails__imgs{
+  width: 50%;
+  width: 15rem;
+  height: 15rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  object-fit: contain;
+}
