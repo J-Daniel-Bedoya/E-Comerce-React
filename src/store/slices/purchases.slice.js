@@ -13,7 +13,7 @@ export const purchasesSlice = createSlice({
     }
 })
 
-export const purchasesThunk = () => dispatch => {
+export const purchasesThunk = () => (dispatch) => {
     //dispatch(setIsLoading(true));
     //const token = localStorage.getItem("token")
     return axios.get("https://ecommerce-api-react.herokuapp.com/api/v1/purchases", getConfig())
