@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar } from "../store/slices/ProductCar.slice";
- 
 import { getProductsThunk } from "../store/slices/products.slice";
 import "../styles/Products/ProductsDetails.css";
 
@@ -57,13 +56,13 @@ const ProductsDetails = () => {
         {/* este contianer es lo que tiene la info del producto */}
         <div className="productDetail__container--imgs">
           <div className="productDetail__container--ImgOne">
-            <button onClick={() => setNext(next-1)} disabled={next <= 0}><i class="fa-solid fa-chevron-left"></i></button>
+            <button onClick={() => setNext(next-1)} disabled={next <= 0}><i className="fa-solid fa-chevron-left"></i></button>
             {
               !productImgUrl ? 
                 (<div style={{backgroundImage: `url(${productDetail?.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
                 : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
             }
-            <button onClick={() => setNext(next+1)} disabled={productDetail?.productImgs.length-1 <= next}><i class="fa-solid fa-chevron-right"></i></button>
+            <button onClick={() => setNext(next+1)} disabled={productDetail?.productImgs.length-1 <= next}><i className="fa-solid fa-chevron-right"></i></button>
           </div>
           <div className="productDetail__arrayImgs">
             {

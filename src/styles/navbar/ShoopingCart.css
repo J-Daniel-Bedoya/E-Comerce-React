@@ -26,7 +26,7 @@
 /* circulo del logo del e-commerce */
 .shooping__card--imgCircle {
   width: 6.5rem;
-  height: 18%;
+  height: 105px;
   margin-top: .2rem;
   display: flex;
   flex-direction: column;

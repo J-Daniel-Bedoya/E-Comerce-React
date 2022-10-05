@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProductFromCar, getAddProduct, updateProductFromCart } from '../store/slices/ProductCar.slice';
+import { deleteProductFromCar, getAddProduct, purchaseProductCAr, updateProductFromCart } from '../store/slices/ProductCar.slice';
 import { setShooping } from '../store/slices/shoopingTrue.slice';
 import { getProductsThunk } from "../store/slices/products.slice";
 import '../styles/navbar/ShoopingCart.css'
@@ -31,6 +31,10 @@ const ShoppingCart = () => {
   const deleteProductCar = (id) => {
     //alert(id)
     dispatch(deleteProductFromCar(id))
+  }
+
+  const purchaseProduct = () =>{
+    dispatch(purchaseProductCAr())
   }
 
   return (
@@ -83,7 +87,7 @@ const ShoppingCart = () => {
           }
         </div>
         <div className='shooping__container--checkout'>
-          <button>Checkout</button>
+          <button onClick={() => purchaseProduct()} >Checkout</button>
         </div>
       </div>
     </div>

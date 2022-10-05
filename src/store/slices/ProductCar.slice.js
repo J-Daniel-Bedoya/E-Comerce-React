@@ -19,8 +19,8 @@ export const getAddProduct = () => dispatch => {
     .then(res => {
       dispatch(setcar(res.data.data.cart.products))
     })
+    .catch(() => alert("no existen productos en el carrito"))
 }
-
 export const addProductCar =  (data) => dispatch => {
     axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/cart`, data, getConfig())
       .then(() => {
@@ -32,7 +32,6 @@ export const addProductCar =  (data) => dispatch => {
         console.log(Error)
       })
 }
-
 export const deleteProductFromCar = (id) => dispatch => {
   axios.delete(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${id}`, getConfig())
   .then(() => {
@@ -44,8 +43,6 @@ export const deleteProductFromCar = (id) => dispatch => {
     console.log(Error)
   })
 }
-
-
 export const updateProductFromCart = (data) => dispatch => {
   axios.patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", data, getConfig())
   .then(() => {
@@ -54,6 +51,18 @@ export const updateProductFromCart = (data) => dispatch => {
   })
   .catch((Error) => {
     alert(`error al actualizar un producto al carrito`)
+    console.log(Error)
+  })
+}
+
+export const purchaseProductCAr = () => dispatch => {
+  axios.post("https://ecommerce-api-react.herokuapp.com/api/v1/purchases", {}, getConfig())
+  .then(() => {
+    dispatch(getAddProduct())
+    alert(`has comprado el producto correctamente`)
+  })
+  .catch((Error) => {
+    alert(`error al comprar los productos del carrito`)
     console.log(Error)
   })
 }

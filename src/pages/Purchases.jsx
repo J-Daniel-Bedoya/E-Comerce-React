@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../styles/Purchases/Purchases.css'
 import { purchasesThunk } from '../store/slices/purchases.slice';
-
+import Fecha from '../components/Fecha';
 const Purchases = () => {
     const dispatch = useDispatch()
     
@@ -12,20 +12,27 @@ const Purchases = () => {
   useEffect(() => {
     dispatch(purchasesThunk())
   }, [])
-  // bueno jose este los estilos de aca solo son para ver lo que yo pongo ya tu los cambiarias para que quede ps lo mejor que se pueda
+  
+
+//toDateString()
+  //const date = purchases[0]?.createdAt
+  //console.log(date?.toDateString());
+
   return (
-    <div style={{height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-      <h1>Purchases</h1>
+    <div className='Container__Purchases'>
+      <h1 className='purchases__title' >Purchases</h1>
       {
         purchases.map(purchase => (
-          <div  key={purchase.id} style={{border: "1px solid black", margin: "1rem 0", display: "flex", flexDirection: "column", alignItems: "center", width: "75%"}}>
-            <div style={{border: "1px solid black", width: "100%", height: "50px", marginBottom: "1rem", background: "hsl(257, 83%, 12%)", color: "white"}}>fecha</div>
+          
+          <div className='card__purchases' key={purchase.id}>
+          { /* console.log(purchase)*/}
+            <Fecha purchaseDate={purchase?.createdAt} />
             {
               purchase.cart.products?.map(product => (
-                <div style={{marginBottom: "1.5rem", display: 'flex', alignItems: "center", width: "60%",  justifyContent: "space-between"}}  key={product.id}> {/* este es mas es container que contiene la info del produto que compro */}
-                  <p> {product.title} hola </p>
-                  <b> {product.productsInCart.quantity} {/* aca esta la cantidad de productos que compro */} </b>
-                  <p> $ {product.price * product.productsInCart.quantity}  {/* este es el total de cuanto de la cantidades que compro aun nose cuanto poner pq solo son unas compras pero si requiere funcionaliad que cambie yo la hago facilmente (product.price * product.productsInCart.quantity ) */} </p>
+                <div  className='card__product--purchases' key={product.id}> {/* este es mas es container que contiene la info del produto que compro */}
+                  <p className='product__title--purchases' > {product.title}</p>
+                  <b className='product__quantity--purchases' > {product.productsInCart.quantity} {/* aca esta la cantidad de productos que compro */} </b>
+                  <p className='' > $ {product.price * product.productsInCart.quantity}  {/* este es el total de cuanto de la cantidades que compro aun nose cuanto poner pq solo son unas compras pero si requiere funcionaliad que cambie yo la hago facilmente (product.price * product.productsInCart.quantity ) */} </p>
                 </div>
               ))
             }
@@ -33,7 +40,7 @@ const Purchases = () => {
         ))
       }
 
-    </div>
+    </div>  
   );
 };
 
