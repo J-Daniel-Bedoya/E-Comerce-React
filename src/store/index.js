@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import productsSlice from './slices/products.slice'  
 import shoopingTrueSlice from './slices/shoopingTrue.slice'
-
-import addProductSlice from './slices/addProduct.slice'
+import ProductCarSlice from './slices/ProductCar.slice'
 
 
 
@@ -12,7 +11,7 @@ export default configureStore({
   reducer: {
     products: productsSlice,
     shooping: shoopingTrueSlice,
-    addProduct: addProductSlice,
+    ProductCar: ProductCarSlice,
     purchases: purchasesSlice,
 
   }

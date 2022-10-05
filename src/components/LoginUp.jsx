@@ -16,6 +16,7 @@ const LoginUp = () => {
         console.log(res.data.data)
         alert("usuarioLogeado")
         localStorage.setItem("token", res.data.data.token)
+        localStorage.setItem("User Name", (`${res.data.data.user?.firstName} ${res.data.data.user?.lastName}`))
         Navigate("/")
       })
 

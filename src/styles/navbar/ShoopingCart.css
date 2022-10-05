@@ -113,15 +113,7 @@
   height: 100%;
   color: rgb(15, 4, 51);
 }
-.shooping__cart--img {
-  background-color: rgb(45, 10, 161);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 55px;
-  border-radius: 5px 0 0 5px;
-  width: 70px;
-  height: 100%;
-}
+
 /* nombre del producto seleccionado */
 .shooping__cart h3 {
   font-size: 13px;

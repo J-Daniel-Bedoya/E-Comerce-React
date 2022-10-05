@@ -3,11 +3,12 @@ import axios from 'axios';
 import getConfig from '../../utils/getConfig';
   // agrege este slice para poder enviar la información del producto al componente de shooping y consumir la de forma rapida 
 
-export const addProductSlice = createSlice({
-  name: 'addProduct',
+export const ProductCarSlice = createSlice({
+  name: 'ProductCarSlice',
   initialState: [],
   reducers: {
-    setAddProduct: (state, actions) => {
+    
+    setcar: (state, actions) => {
       return actions.payload
     }
   }
@@ -16,13 +17,49 @@ export const addProductSlice = createSlice({
 export const getAddProduct = () => dispatch => {
     axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/cart`, getConfig())
     .then(res => {
-      dispatch(setAddProduct(res.data.data))
+      dispatch(setcar(res.data.data.cart.products))
     })
 }
 
+export const addProductCar =  (data) => dispatch => {
+    axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/cart`, data, getConfig())
+      .then(() => {
+        dispatch(getAddProduct())
+        alert(`producto agregado`)
+      })
+      .catch((Error) => {
+        alert(`error al agregar un producto al carrito`)
+        console.log(Error)
+      })
+}
 
-export const { setAddProduct } = addProductSlice.actions;
-export default addProductSlice.reducer;
+export const deleteProductFromCar = (id) => dispatch => {
+  axios.delete(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${id}`, getConfig())
+  .then(() => {
+    dispatch(getAddProduct())
+    alert(`el producto se elimino correctamente`)
+  })
+  .catch((Error) => {
+    alert(`error al eliminar un producto al carrito`)
+    console.log(Error)
+  })
+}
+
+
+export const updateProductFromCart = (data) => dispatch => {
+  axios.patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", data, getConfig())
+  .then(() => {
+    dispatch(getAddProduct())
+    alert(`el producto se actualizado correctamente`)
+  })
+  .catch((Error) => {
+    alert(`error al actualizar un producto al carrito`)
+    console.log(Error)
+  })
+}
+
+export const { setcar } = ProductCarSlice.actions;
+export default ProductCarSlice.reducer;
 
 
 

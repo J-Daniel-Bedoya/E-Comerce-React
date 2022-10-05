@@ -23,27 +23,18 @@
   z-index: 1;
 }
 .products__container--imag{
-  width: 100%;
-  background-color: antiquewhite;
-  height: 60%;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  height: 250px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  background-color: white;
 }
-.products__cards--imgs{
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 12rem;
-  height: 12rem;
-  
-}
-
-.products__btn--add{
-  position: absolute;
-  bottom: 0;
-  z-index: 10;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+.ImageeProduct{
+  display: block;
+  height: 70%;
+  object-fit: contain;
+  width: 70%;
 }

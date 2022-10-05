@@ -12,9 +12,8 @@ const NavBar = () => {
   // funcion que elimina el token o que cierra sesion de la cuenta
   const logout = () =>{
     localStorage.setItem("token", "")
+    localStorage.setItem("User Name", "")
   }
-
-
 
   return (
     <div className="Navbar" >
@@ -34,7 +33,7 @@ const NavBar = () => {
             <i className="fa-solid fa-bag-shopping nav__icon"></i>
         </Link>
         <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
-            <p>LOGOUT</p>
+            <p>  LOGOUT</p>
         </Link>
         <div className="nav__icons store" onClick={() => dispatch(setShooping())}>
           <i className="fa-solid fa-cart-shopping nav__icon"></i>

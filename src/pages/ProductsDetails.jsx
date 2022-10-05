@@ -1,31 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { addProductCar } from "../store/slices/ProductCar.slice";
+
+import { getProductsThunk } from "../store/slices/products.slice";
 import "../styles/Products/ProductsDetails.css";
 
 const ProductsDetails = () => {
   // en la api hay una url para traer un producto por id pero no lo voy a usar pq sera un poco innecesario
   // entonces usare el slice de que tenemos con todos los productos  y los filtrare con el id y yap
   const { id } = useParams();
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const productList = useSelector((state) => state.products);
   const productDetail = productList.find((product) => product.id === +id); //  aca me filtra el producto usando el id de el que esta en la url
   const [amountProduct, setAmountProduct] = useState(1); // esta en la cantidad de productos que va a comprasr
+  //const {register, handleSubmit} = useForm()
+
+// =====================================================================================================================
   const suggestionProducts = productList.filter(
     (product) => product.category.id === productDetail.category.id
   ); // aca es la logica de los productos recomendados que es que comparo la id de la categoria de cada producto de la lista y si el id de la categoria coinside con el id de la categoria que estamos mostrando me  va a mostras los productos sugeridos
   // console.log(productList);
+// =====================================================================================================================
 
+  const addCartSubmit = (amount) =>{
+    const dataProduct = {
+      id,
+      quantity: amount
+    } // este objeto trae la catidad de productos y el id
+    console.log(dataProduct);
+    dispatch(addProductCar(dataProduct))
+  }
 
+// =====================================================================================================================
   const [productImgUrl, setProductImgUrl] = useState("")
   // const [prev, setPrev] = useState(0)
   const [next, setNext] = useState(0)
-
+// =====================================================================================================================
+    useEffect(() => {
+      dispatch(getProductsThunk())
+    }, [])
+// =====================================================================================================================
   const sugProd = (sug) => {
     navigate(`/product/${sug}`)
     setNext(0)
+    setAmountProduct(1)
   }
-
+// =====================================================================================================================
   return (
     <div className="productDetails">
       {/*  los estilos los puedes quitar solo fue para ver bien lo que traiga */}
@@ -56,7 +79,7 @@ const ProductsDetails = () => {
               ))
             }
           </div>
-        </div>
+        </div>  
         <div className="productDetail__detail">
           <h2>{productDetail?.title}</h2>
           <p>{productDetail?.description} {/* description de producto */}</p>
@@ -88,7 +111,7 @@ const ProductsDetails = () => {
 
             </div>
           </div>
-          <div className="productDetail__addCart">
+          <div onClick={() => addCartSubmit(amountProduct)} className="productDetail__addCart">
             <h4>Add to cart</h4>
           </div>
         </div>
