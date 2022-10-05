@@ -1,10 +1,22 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setShooping } from '../store/slices/shoopingTrue.slice';
 import '../styles/navbar/ShoopingCart.css'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
+  const productsActual = useSelector(state => state.addProduct)
+  
+  const products = JSON.parse(localStorage.getItem("procutCartPrice"))
+  const [product, setProduct] = useState([])
+  const [trueProduct, setTrueProduct] = useState(false)
+  useEffect(() => {
+    setProduct(products)
+    setTrueProduct(true)
+  }, [setProduct])
+
+
   return (
     
     <div>
@@ -17,83 +29,31 @@ const ShoppingCart = () => {
           </div>
         </div>
         <div className='shooping__container--products'>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
-          <div className='shooping__cart'>
-            <div className='shooping__cart--img'></div>
-            <div className='shooping__cart--productInfo'>
-              <h3>info name product</h3>
-              <p><b>$</b> 20000</p>
-            </div>
-          </div>
+            {
+              trueProduct ? (
+                product?.map(prod => (
+                  console.log(prod),
+                  <div className='shooping__cart'>
+                    <div className='shooping__cart--img' style={{backgroundImage: `url(${prod.productImgs?.[1]})`}}></div>
+                    <div className='shooping__cart--productInfo'>
+                      <h3>{prod.title}</h3>
+                      <p><b>$</b> prod.price</p>
+                    </div>
+                  </div>
+                ))
+                ) : (
+                  productsActual?.map(prod => (
+                    console.log(prod),
+                    <div className='shooping__cart'>
+                      <div className='shooping__cart--img' style={{backgroundImage: `url(${prod.productImgs?.[1]})`}}></div>
+                      <div className='shooping__cart--productInfo'>
+                        <h3>{prod.title}</h3>
+                        <p><b>$</b> prod.price</p>
+                      </div>
+                    </div>
+                  ))
+                )
+            }
         </div>
         <div className='shooping__container--checkout'>
           <button>Checkout</button>

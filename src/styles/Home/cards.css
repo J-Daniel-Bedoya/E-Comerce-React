@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .products__cards .containerImg{
   width: 100%;
   display: flex;
@@ -10,4 +11,54 @@
   width: 10rem;
   height: 10rem;
   object-fit: contain;
+=======
+.products__container--cards{
+  width: 90%;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.products__cards{
+  width: 16rem;
+  height: 22rem;
+  background-color: rgb(221, 205, 251);
+  border-radius: 3px;
+  border: .1rem solid rgb(161, 140, 248);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.products__container--imag{
+  width: 100%;
+  background-color: antiquewhite;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.products__cards--imgs{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 5rem;
+  width: 4rem;
+  height: 5rem;
+  
+}
+
+.products__btn--add{
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+>>>>>>> main
 }

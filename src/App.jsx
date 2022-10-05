@@ -5,27 +5,17 @@ import Footer from './components/Footer'
 import LoginUp from './components/LoginUp'
 import NavBar from './components/NavBar'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import ShoppingCart from './components/ShoppingCart'
 import SignUp from './components/SignUp'
 import HomeStart from './pages/HomeStart'
 import LoginUser from './pages/LoginUser'
 import ProductsDetails from './pages/ProductsDetails'
 import Purchases from './pages/Purchases'
-import { getProductsThunk } from './store/slices/products.slice'
+import { useSelector } from "react-redux";
 import './styles/App.css'
 
 function App() {
-
-
-  // jose me traje el getProductsThunk de homeStart a App que esa informacion de los productos las usemos en todos los componentes que sean necesarias, me explico si la hubiera dejalo solo en homeStar no me hubiera para ProductDetails, entonces lo coloque aca para que me sirviera de manera mas "global"
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getProductsThunk());
-  }, [])
-
-
-
-
-
+  const shooping = useSelector(state => state.shooping)
   return (
     <HashRouter>
       <div className="App">
@@ -44,7 +34,9 @@ function App() {
             <Route path='/purchases' element={<Purchases />}/>
           </Route>
         </Routes>
-
+        {
+          shooping && <ShoppingCart />
+        }
         <Footer />
         
       </div>

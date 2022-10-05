@@ -5,7 +5,6 @@ export const shoopingTrueSlice = createSlice({
   initialState: false,
   reducers: {
     setShooping: (state) => {
-      console.log(state)
       return !state
     }
   }
