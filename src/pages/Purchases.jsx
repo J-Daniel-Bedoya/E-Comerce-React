@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../styles/Purchases/Purchases.css'
 import { purchasesThunk } from '../store/slices/purchases.slice';
-
+import Fecha from '../components/Fecha';
 const Purchases = () => {
     const dispatch = useDispatch()
     
@@ -14,7 +14,6 @@ const Purchases = () => {
   }, [])
   
 
-
 //toDateString()
   //const date = purchases[0]?.createdAt
   //console.log(date?.toDateString());
@@ -24,8 +23,10 @@ const Purchases = () => {
       <h1 className='purchases__title' >Purchases</h1>
       {
         purchases.map(purchase => (
+          
           <div className='card__purchases' key={purchase.id}>
-            <div className='Header__fecha' >fecha</div>
+          { /* console.log(purchase)*/}
+            <Fecha purchaseDate={purchase?.createdAt} />
             {
               purchase.cart.products?.map(product => (
                 <div  className='card__product--purchases' key={product.id}> {/* este es mas es container que contiene la info del produto que compro */}
