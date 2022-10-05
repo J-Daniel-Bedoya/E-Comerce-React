@@ -14,47 +14,39 @@ const ProductsDetails = () => {
   const suggestionProducts = productList.filter(
     (product) => product.category.id === productDetail.category.id
   ); // aca es la logica de los productos recomendados que es que comparo la id de la categoria de cada producto de la lista y si el id de la categoria coinside con el id de la categoria que estamos mostrando me  va a mostras los productos sugeridos
-  //console.log(suggestionProducts);
+  // console.log(productList);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-      }}
-    >
+    <div className="productDetails">
       {/*  los estilos los puedes quitar solo fue para ver bien lo que traiga */}
 
-      <div>
-        {" "}
+      <div className="productDetail__info">
         {/* este contianer es lo que tiene la info del producto */}
-        <h2>
-          {" "}
-          {/* este es el nombre del producto */} {productDetail?.title}{" "}
-        </h2>
-        
-        {
-          /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
-          productDetail?.productImgs.map((productImg) => (
-            <img
-              key={productImg}
-              style={{ width: "100px" }}
-              src={productImg}
-              alt=""
-            />
-          ))
-        }
-        <p>
-          {" "}
-          {productDetail?.description} {/* description de producto */}{" "}
-        </p>
-        <h3>
-          {" "}
-          {productDetail?.price}
-          {/* precio de producto */}{" "}
-        </h3>
+        <div className="productDetail__container--imgs">
+          {
+            /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
+            productDetail?.productImgs.map((productImg) => (
+              <div className="productDetails__imgs"
+                key={productImg}
+                style={{"backgroundImage": `url(${productImg})`}}
+              >
+                {/* <img src={} alt="" /> */}
+              {/* k */}
+
+              </div>
+            ))
+          }
+        </div>
+        <h2>{productDetail?.title}</h2>
+          <p>
+            {" "}
+            {productDetail?.description} {/* description de producto */}{" "}
+          </p>
+          <h3>
+            {" "}
+            {productDetail?.price}
+            {/* precio de producto */}{" "}
+          </h3>
         <div style={{ display: "flex", gap: "2rem", marginTop: "2rem" }}>
           {" "}
           {/* en este container esta el el contador de cuantos productos quiere */}
