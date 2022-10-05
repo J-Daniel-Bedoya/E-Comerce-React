@@ -1,0 +1,48 @@
+.Container__Purchases{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+.purchases__title{
+  margin-top: 10rem;
+  text-align: end;
+}
+.card__purchases{
+  outline: 1px solid hsl(257, 83%, 12%);
+  border-radius: 25px;
+  padding-bottom: 2rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.Header__fecha{
+  width: 100%;
+  height: 50px;
+  background-color: rgb(78, 2, 163);
+  border-radius: 25px 25px 0 0;
+  color: white;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.card__product--purchases{
+  /*border: 1px solid black; */
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  height: 50px;
+}
+.product__quantity--purchases{
+  border: 1px solid black ;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
