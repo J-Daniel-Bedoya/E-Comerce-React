@@ -37,10 +37,10 @@ const ProductsDetails = () => {
             <button onClick={() => setNext(next-1)} disabled={next <= 0}>prev</button>
             {
               !productImgUrl ? 
-                (<div style={{backgroundImage: `url(${productDetail.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
+                (<div style={{backgroundImage: `url(${productDetail?.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
                 : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
             }
-            <button onClick={() => setNext(next+1)} disabled={productDetail.productImgs.length-1 <= next}>next</button>
+            <button onClick={() => setNext(next+1)} disabled={productDetail?.productImgs.length-1 <= next}>next</button>
           </div>
           <div className="productDetail__arrayImgs">
             {
