@@ -18,10 +18,14 @@ const ProductsDetails = () => {
 
 
   const [productImgUrl, setProductImgUrl] = useState("")
-  useEffect(() => {
-    setProductImgUrl()
-  }, [setProductImgUrl])
-  console.log(productImgUrl)
+  // const [prev, setPrev] = useState(0)
+  const [next, setNext] = useState(0)
+
+  const sugProd = (sug) => {
+    navigate(`/product/${sug}`)
+    setNext(0)
+  }
+
   return (
     <div className="productDetails">
       {/*  los estilos los puedes quitar solo fue para ver bien lo que traiga */}
@@ -29,23 +33,29 @@ const ProductsDetails = () => {
       <div className="productDetail__info">
         {/* este contianer es lo que tiene la info del producto */}
         <div className="productDetail__container--imgs">
-          {
-            !productImgUrl ? 
-              (<div style={{backgroundImage: `url(${productDetail.productImgs[0]})`}} className="productDetails__imgsOne"></div>) 
-              : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
-          }
-          {
-            /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
-            productDetail?.productImgs.map((productImg) => (
-              <div 
-                className="productDetails__imgs"
-                key={productImg}
-                style={{"backgroundImage": `url(${productImg})`}}
-                onClick={() => setProductImgUrl(productImg)}
-              > 
-              </div>
-            ))
-          }
+          <div className="productDetail__container--ImgOne">
+            <button onClick={() => setNext(next-1)} disabled={next <= 0}>prev</button>
+            {
+              !productImgUrl ? 
+                (<div style={{backgroundImage: `url(${productDetail.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
+                : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
+            }
+            <button onClick={() => setNext(next+1)} disabled={productDetail.productImgs.length-1 <= next}>next</button>
+          </div>
+          <div className="productDetail__arrayImgs">
+            {
+              /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
+              productDetail?.productImgs.map((productImg) => (
+                <div 
+                  className="productDetails__imgs"
+                  key={productImg}
+                  style={{"backgroundImage": `url(${productImg})`}}
+                  onClick={() => setProductImgUrl(productImg)}
+                > 
+                </div>
+              ))
+            }
+          </div>
         </div>
         <div className="productDetail__detail">
           <h2>{productDetail?.title}</h2>
@@ -94,7 +104,7 @@ const ProductsDetails = () => {
           <div
             key={suggestionProduct.id}
             style={{ width: "200px", border: "1px solid black", cursor: "pointer" }}
-            onClick={() => navigate(`/product/${suggestionProduct.id}`)}
+            onClick={() => sugProd(suggestionProduct.id)}
             
           >
             {" "}
