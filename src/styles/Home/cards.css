@@ -33,7 +33,7 @@
 .products__cards--imgs{
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: contain; 
   width: 12rem;
   height: 12rem;
   
