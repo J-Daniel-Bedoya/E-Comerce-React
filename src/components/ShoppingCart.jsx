@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddProduct } from '../store/slices/addProduct.slice';
+import { getAddProduct } from '../store/slices/ProductCar.slice';
 import { setShooping } from '../store/slices/shoopingTrue.slice';
+import { getProductsThunk } from "../store/slices/products.slice";
 import '../styles/navbar/ShoopingCart.css'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
-  const addProduct = useSelector(state => state.addProduct)
+  const ProductsCars = useSelector(state => state.ProductCar)
 
 
 
-  console.log(addProduct)
+  //console.log(addProduct)
 
   useEffect(() => {
     dispatch(getAddProduct())
@@ -31,7 +32,7 @@ const ShoppingCart = () => {
         <div className='shooping__container--products'>
             {
               // trueProduct ? (
-                addProduct.cart?.products?.map(prod => (
+                ProductsCars.map(prod => (
                  // console.log(prod),
                   <div key={prod.id} className='shooping__cart'>
                     <div className='shooping__cart--img'></div>

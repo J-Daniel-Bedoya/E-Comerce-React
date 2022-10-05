@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { addProductCar} from "../store/slices/ProductCar.slice";
+import { getProductsThunk } from "../store/slices/products.slice";
 import "../styles/Products/ProductsDetails.css";
 
 const ProductsDetails = () => {
@@ -8,9 +10,25 @@ const ProductsDetails = () => {
   // entonces usare el slice de que tenemos con todos los productos  y los filtrare con el id y yap
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const productList = useSelector((state) => state.products);
   const productDetail = productList.find((product) => product.id === +id); //  aca me filtra el producto usando el id de el que esta en la url
   const [amountProduct, setAmountProduct] = useState(1); // esta en la cantidad de productos que va a comprasr
+  
+  
+  useEffect(() => {
+    dispatch(getProductsThunk())
+  }, [])
+  
+  const submit = (amount) => {
+      const DataProduct = {}
+        DataProduct.quantity = amount
+        DataProduct.id = id
+        dispatch(addProductCar(DataProduct))
+        console.log(DataProduct);
+  }
+  
+  
   const suggestionProducts = productList.filter(
     (product) => product.category.id === productDetail.category.id
   ); // aca es la logica de los productos recomendados que es que comparo la id de la categoria de cada producto de la lista y si el id de la categoria coinside con el id de la categoria que estamos mostrando me  va a mostras los productos sugeridos
@@ -28,43 +46,23 @@ const ProductsDetails = () => {
             productDetail?.productImgs.map((productImg) => (
               <div className="productDetails__imgs"
                 key={productImg}
-                style={{"backgroundImage": `url(${productImg})`}}
+                style={{ "backgroundImage": `url(${productImg})` }}
               >
                 {/* <img src={} alt="" /> */}
-              {/* k */}
-
+                {/* k */}
               </div>
             ))
           }
         </div>
         <h2>{productDetail?.title}</h2>
-          <p>
-            {" "}
-            {productDetail?.description} {/* description de producto */}{" "}
-          </p>
-          <h3>
-            {" "}
-            {productDetail?.price}
-            {/* precio de producto */}{" "}
-          </h3>
-        <div style={{ display: "flex", gap: "2rem", marginTop: "2rem" }}>
-          {" "}
-          {/* en este container esta el el contador de cuantos productos quiere */}
-          <button
-            onClick={() => setAmountProduct(amountProduct - 1)}
-            disabled={amountProduct === 1}
-          >
-            {" "}
-            - 1
-          </button>
-          <b>
-            {amountProduct} {/* la cantidad de productos que quiere agregar */}{" "}
-          </b>
-          <button onClick={() => setAmountProduct(amountProduct + 1)}>
-            {" "}
-            + 1{" "}
-          </button>
-        </div>
+        <p>
+          
+          {productDetail?.description} {/* description de producto */}
+        </p>
+        <h3>
+          {productDetail?.price}
+          {/* precio de producto */}
+        </h3>
       </div>
 
       {/* productos recomentados*/}
@@ -83,9 +81,9 @@ const ProductsDetails = () => {
             key={suggestionProduct.id}
             style={{ width: "200px", border: "1px solid black", cursor: "pointer" }}
             onClick={() => navigate(`/product/${suggestionProduct.id}`)}
-            
+
           >
-            {" "}
+            
             {/* este container es el las cards de los productos sugeridos */}
             <img
               style={{ width: "100px" }}
@@ -98,6 +96,22 @@ const ProductsDetails = () => {
         ))}
         <button onClick={() => navigate("/")}>Home</button> {/* este boton me llevará al home */}
       </div>
+
+
+      <div style={{ border: "1px solid black",width: "150px" }}>
+          {/* en este container esta el el contador de cuantos productos quiere */}
+          <button
+            onClick={() => setAmountProduct(amountProduct - 1)}
+            disabled={amountProduct === 1}
+          >
+            - 1
+          </button>
+          <input type="number" value={amountProduct} onChange={() => setAmountProduct(e.target.value)} />  {/* la cantidad de productos que quiere agregar */}
+          <button onClick={() => setAmountProduct(amountProduct + 1)}>
+            + 1
+          </button>
+          <button style={{cursor: "pointer"}} className="products__btn--add" onClick={() => submit(amountProduct)}>Agregar</button> {/* este boton es el encargado de agregar los productos para poder los comprar en la parte de cart */}
+        </div>
     </div>
   );
 };

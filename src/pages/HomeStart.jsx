@@ -5,7 +5,7 @@ import axios from "axios";
 import "../styles/Home/HomeStart.css";
 import "../styles/Home/cards.css";
 import { useNavigate } from "react-router-dom";
-import { setAddProduct } from "../store/slices/addProduct.slice";
+import ProductCarSlice, { getAddProduct } from "../store/slices/ProductCar.slice";
 
 const HomeStart = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const HomeStart = () => {
 
   useEffect(() => {
     dispatch(getProductsThunk())
+    dispatch(getAddProduct())
   }, [])
 
   useEffect(() => {
@@ -138,8 +139,8 @@ const HomeStart = () => {
                 <h4>{product.title}</h4>
                 <p>Price</p>
                 <b>{product.price}</b>
+                <button>VER MAS </button>
               </div>
-              <button style={{cursor: "pointer"}} className="products__btn--add" onClick={() => dispatch(setAddProduct(product))}>Agregar</button> {/* este boton es el encargado de agregar los productos para poder los comprar en la parte de cart */}
             </div>
           ))}
         </div>
