@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar} from "../store/slices/ProductCar.slice";
@@ -33,6 +33,16 @@ const ProductsDetails = () => {
     (product) => product.category.id === productDetail.category.id
   ); // aca es la logica de los productos recomendados que es que comparo la id de la categoria de cada producto de la lista y si el id de la categoria coinside con el id de la categoria que estamos mostrando me  va a mostras los productos sugeridos
   // console.log(productList);
+
+
+  const [productImgUrl, setProductImgUrl] = useState("")
+  // const [prev, setPrev] = useState(0)
+  const [next, setNext] = useState(0)
+
+  const sugProd = (sug) => {
+    navigate(`/product/${sug}`)
+    setNext(0)
+  }
 
   return (
     <div className="productDetails">
