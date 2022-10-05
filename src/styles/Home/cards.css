@@ -33,9 +33,9 @@
 .products__cards--imgs{
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 5rem;
-  width: 4rem;
-  height: 5rem;
+  background-size: contain;
+  width: 12rem;
+  height: 12rem;
   
 }
 
