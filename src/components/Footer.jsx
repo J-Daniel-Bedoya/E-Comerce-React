@@ -18,13 +18,13 @@ const Footer = () => {
               href="https://github.com/J-Daniel-Bedoya" target={"_blank"}>
               <i className="fa-brands fa-github icons"></i></a>         
             <a 
-              href="#" target={"_blank"}>
+              href="https://danielbedoya.netlify.app" target={"_blank"}>
               <i className="fa-solid fa-briefcase icons"></i></a> 
             <a 
-              href="" target={"_blank"}>
+              href="mailto:jbedoyachavarriaga@gmail.com">
               <i className="fa-solid fa-envelope icons"></i></a>   
             <a 
-              href="" target={"_blank"}>
+              href="tel:+57 316 449 3210">
               <i className="fa-solid fa-phone icons"></i></a>  
           </div>
         </div>
