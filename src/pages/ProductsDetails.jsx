@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/Products/ProductsDetails.css";
@@ -16,6 +16,16 @@ const ProductsDetails = () => {
   ); // aca es la logica de los productos recomendados que es que comparo la id de la categoria de cada producto de la lista y si el id de la categoria coinside con el id de la categoria que estamos mostrando me  va a mostras los productos sugeridos
   // console.log(productList);
 
+
+  const [productImgUrl, setProductImgUrl] = useState("")
+  // const [prev, setPrev] = useState(0)
+  const [next, setNext] = useState(0)
+
+  const sugProd = (sug) => {
+    navigate(`/product/${sug}`)
+    setNext(0)
+  }
+
   return (
     <div className="productDetails">
       {/*  los estilos los puedes quitar solo fue para ver bien lo que traiga */}
@@ -23,47 +33,61 @@ const ProductsDetails = () => {
       <div className="productDetail__info">
         {/* este contianer es lo que tiene la info del producto */}
         <div className="productDetail__container--imgs">
-          {
-            /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
-            productDetail?.productImgs.map((productImg) => (
-              <div className="productDetails__imgs"
-                key={productImg}
-                style={{"backgroundImage": `url(${productImg})`}}
-              >
-                {/* <img src={} alt="" /> */}
-              {/* k */}
-
-              </div>
-            ))
-          }
+          <div className="productDetail__container--ImgOne">
+            <button onClick={() => setNext(next-1)} disabled={next <= 0}>prev</button>
+            {
+              !productImgUrl ? 
+                (<div style={{backgroundImage: `url(${productDetail.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
+                : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
+            }
+            <button onClick={() => setNext(next+1)} disabled={productDetail.productImgs.length-1 <= next}>next</button>
+          </div>
+          <div className="productDetail__arrayImgs">
+            {
+              /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
+              productDetail?.productImgs.map((productImg) => (
+                <div 
+                  className="productDetails__imgs"
+                  key={productImg}
+                  style={{"backgroundImage": `url(${productImg})`}}
+                  onClick={() => setProductImgUrl(productImg)}
+                > 
+                </div>
+              ))
+            }
+          </div>
         </div>
-        <h2>{productDetail?.title}</h2>
-          <p>
-            {" "}
-            {productDetail?.description} {/* description de producto */}{" "}
-          </p>
-          <h3>
-            {" "}
-            {productDetail?.price}
-            {/* precio de producto */}{" "}
-          </h3>
-        <div style={{ display: "flex", gap: "2rem", marginTop: "2rem" }}>
-          {" "}
-          {/* en este container esta el el contador de cuantos productos quiere */}
-          <button
-            onClick={() => setAmountProduct(amountProduct - 1)}
-            disabled={amountProduct === 1}
-          >
-            {" "}
-            - 1
-          </button>
-          <b>
-            {amountProduct} {/* la cantidad de productos que quiere agregar */}{" "}
-          </b>
-          <button onClick={() => setAmountProduct(amountProduct + 1)}>
-            {" "}
-            + 1{" "}
-          </button>
+        <div className="productDetail__detail">
+          <h2>{productDetail?.title}</h2>
+          <p>{productDetail?.description} {/* description de producto */}</p>
+          <div className="productDetail__priceAndContador">
+            <div>
+              <p>Price</p>
+              <h3>{productDetail?.price}{/* precio de producto */}</h3>
+            </div>
+            <div className="productDetail__contador--container">
+              <p>Quantity</p>
+              <div className="productDetail__contador">
+                {/* en este container esta el el contador de cuantos productos quiere */}
+                <button
+                  onClick={() => setAmountProduct(amountProduct - 1)}
+                  disabled={amountProduct === 1}
+                >
+                  - 1
+                </button>
+                <b>
+                  {amountProduct} {/* la cantidad de productos que quiere agregar */}
+                </b>
+                <button onClick={() => setAmountProduct(amountProduct + 1)}>
+                  + 1
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div className="productDetail__addCart">
+            <h4>Add to cart</h4>
+          </div>
         </div>
       </div>
 
@@ -82,7 +106,7 @@ const ProductsDetails = () => {
           <div
             key={suggestionProduct.id}
             style={{ width: "200px", border: "1px solid black", cursor: "pointer" }}
-            onClick={() => navigate(`/product/${suggestionProduct.id}`)}
+            onClick={() => sugProd(suggestionProduct.id)}
             
           >
             {" "}
