@@ -5,20 +5,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 6rem;
-  background-color: rgb(167, 235, 212);
+  padding-top: 4rem;
+  /* background-color: rgb(167, 235, 212); */
 }
 .productDetail__info{
-  background-color: blue;
+  background-color: #f7f7fb;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 30rem;
   width: 80%;
   margin-top: 7rem;
+  outline: 1px solid rgb(91, 23, 238);
+  border-radius: 15px;
 }
 .productDetail__container--imgs{
-  background-color: aqua;
   width: 50%;
   height: 100%;
   display: flex;
@@ -27,42 +28,90 @@
 .productDetail__container--ImgOne{
   width: 100%;
   height: 70%;
-  background-color: rgb(93, 93, 227);
+  /* background-color: rgb(93, 93, 227); */
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 .productDetail__arrayImgs{
   width: 100%;
   height: 30%;
-  background-color: rgb(164, 34, 215);
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  gap: 1rem;
   padding: 1rem;
 }
 .productDetails__imgsOne{
   width: 15rem;
   height: 15rem;
-  /* background-color: yellowgreen; */
-  border: 1px solid #000;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 .productDetails__imgs{
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   object-fit: contain;
-  background-color: black;
 }
 .productDetail__detail{
-  background-color: blanchedalmond;
   width: 50%;
-  /* width: 100%; */
   height: 100%;
-  padding: 1rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.productDetail__priceAndContador{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  margin-top: 1rem ;
+  padding-right: 9rem;
+}
+
+.productDetail__contador--container p{
+  font-size: 12px;
+}
+.productDetail__contador{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: .5rem;
+  width: fit-content;
+  height: 28px;
+  outline: 1px solid rgb(172, 169, 169);
+  border-radius: 5px;
+}
+.productDetail__contador button{
+  border-radius: 5px;
+  height: 100%;
+  padding: 2px 10px;
+  font-size: 14px;
+  border: none;
+  background-color: rgb(175, 151, 252);
+  cursor: pointer;
+}
+.productDetail__contador button:hover{
+  background-color: rgb(210, 171, 247);
+
+}
+.productDetail__addCart{
+  background-color: rgb(103, 85, 237);
+  color: #fff;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  border-radius: 5px;
 }

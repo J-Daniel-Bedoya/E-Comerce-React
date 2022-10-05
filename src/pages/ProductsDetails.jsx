@@ -59,32 +59,34 @@ const ProductsDetails = () => {
         </div>
         <div className="productDetail__detail">
           <h2>{productDetail?.title}</h2>
-            <p>
-            
-              {productDetail?.description} {/* description de producto */}
-            </p>
-            <h3>
-              
-              {productDetail?.price}
-              {/* precio de producto */}
-            </h3>
-          <div style={{ display: "flex", gap: "2rem", marginTop: "2rem" }}>
-            
-            {/* en este container esta el el contador de cuantos productos quiere */}
-            <button
-              onClick={() => setAmountProduct(amountProduct - 1)}
-              disabled={amountProduct === 1}
-            >
-              {" "}
-              - 1
-            </button>
-            <b>
-              {amountProduct} {/* la cantidad de productos que quiere agregar */}{" "}
-            </b>
-            <button onClick={() => setAmountProduct(amountProduct + 1)}>
-              {" "}
-              + 1{" "}
-            </button>
+          <p>{productDetail?.description} {/* description de producto */}</p>
+          <div className="productDetail__priceAndContador">
+            <div>
+              <p>Price</p>
+              <h3>{productDetail?.price}{/* precio de producto */}</h3>
+            </div>
+            <div className="productDetail__contador--container">
+              <p>Quantity</p>
+              <div className="productDetail__contador">
+                {/* en este container esta el el contador de cuantos productos quiere */}
+                <button
+                  onClick={() => setAmountProduct(amountProduct - 1)}
+                  disabled={amountProduct === 1}
+                >
+                  - 1
+                </button>
+                <b>
+                  {amountProduct} {/* la cantidad de productos que quiere agregar */}
+                </b>
+                <button onClick={() => setAmountProduct(amountProduct + 1)}>
+                  + 1
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div className="productDetail__addCart">
+            <h4>Add to cart</h4>
           </div>
         </div>
       </div>
