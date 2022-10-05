@@ -6,6 +6,7 @@ export const addProductSlice = createSlice({
   name: 'addProduct',
   initialState: JSON.parse(localStorage.getItem("procutCartPrice")),
   reducers: {
+    
     setAddProduct: (state, actions) => {
       const f = JSON.parse(localStorage.getItem("procutCartPrice"))
       if (f === null) {

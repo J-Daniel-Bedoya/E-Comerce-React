@@ -11,14 +11,15 @@ const ShoppingCart = () => {
   const products = JSON.parse(localStorage.getItem("procutCartPrice"))
   const [product, setProduct] = useState([])
   const [trueProduct, setTrueProduct] = useState(false)
+
+
   useEffect(() => {
     setProduct(products)
-    setTrueProduct(true)
+   // setTrueProduct(true)
   }, [setProduct])
 
 
   return (
-    
     <div>
       <div className='container--shooping' onClick={() => dispatch(setShooping())}></div>
       <div className='shooping'>
@@ -43,12 +44,12 @@ const ShoppingCart = () => {
                 ))
                 ) : (
                   productsActual?.map(prod => (
-                    console.log(prod),
+                   // console.log(prod),
                     <div className='shooping__cart'>
                       <div className='shooping__cart--img' style={{backgroundImage: `url(${prod.productImgs?.[1]})`}}></div>
                       <div className='shooping__cart--productInfo'>
                         <h3>{prod.title}</h3>
-                        <p><b>$</b> prod.price</p>
+                        <p><b>$</b> {prod.price}</p>
                       </div>
                     </div>
                   ))
