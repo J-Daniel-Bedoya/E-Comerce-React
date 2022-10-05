@@ -22,6 +22,7 @@ export const getAddProduct = () => dispatch => {
 }
 
 
+
 export const { setAddProduct } = addProductSlice.actions;
 export default addProductSlice.reducer;
 

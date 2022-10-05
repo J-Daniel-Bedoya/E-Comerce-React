@@ -8,6 +8,9 @@ import '../styles/navbar/ShoopingCart.css'
 const ShoppingCart = () => {
   const dispatch = useDispatch()
   const addProduct = useSelector(state => state.addProduct)
+
+
+
   console.log(addProduct)
 
   useEffect(() => {
@@ -29,9 +32,9 @@ const ShoppingCart = () => {
             {
               // trueProduct ? (
                 addProduct.cart?.products?.map(prod => (
-                  console.log(prod),
-                  <div className='shooping__cart'>
-                    <div className='shooping__cart--img' style={{backgroundImage: `url(${prod.productImgs?.[1]})`}}></div>
+                 // console.log(prod),
+                  <div key={prod.id} className='shooping__cart'>
+                    <div className='shooping__cart--img'></div>
                     <div className='shooping__cart--productInfo'>
                       <h3>{prod.title}</h3>
                       <p><b>$</b>{ prod.price}</p>
