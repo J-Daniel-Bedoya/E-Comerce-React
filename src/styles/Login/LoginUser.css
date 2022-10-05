@@ -6,6 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 .login_newUser{
   width: 17rem;

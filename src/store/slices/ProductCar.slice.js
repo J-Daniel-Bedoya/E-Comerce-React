@@ -23,10 +23,40 @@ export const getAddProduct = () => dispatch => {
 
 export const addProductCar =  (data) => dispatch => {
     axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/cart`, data, getConfig())
-      .then(() => dispatch(getAddProduct()))
+      .then(() => {
+        dispatch(getAddProduct())
+        alert(`producto agregado`)
+      })
+      .catch((Error) => {
+        alert(`error al agregar un producto al carrito`)
+        console.log(Error)
+      })
+}
+
+export const deleteProductFromCar = (id) => dispatch => {
+  axios.delete(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${id}`, getConfig())
+  .then(() => {
+    dispatch(getAddProduct())
+    alert(`el producto se elimino correctamente`)
+  })
+  .catch((Error) => {
+    alert(`error al eliminar un producto al carrito`)
+    console.log(Error)
+  })
 }
 
 
+export const updateProductFromCart = (data) => dispatch => {
+  axios.patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", data, getConfig())
+  .then(() => {
+    dispatch(getAddProduct())
+    alert(`el producto se actualizado correctamente`)
+  })
+  .catch((Error) => {
+    alert(`error al actualizar un producto al carrito`)
+    console.log(Error)
+  })
+}
 
 export const { setcar } = ProductCarSlice.actions;
 export default ProductCarSlice.reducer;
