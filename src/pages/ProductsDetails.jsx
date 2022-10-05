@@ -70,6 +70,7 @@ const ProductsDetails = () => {
               <div className="productDetail__contador">
                 {/* en este container esta el el contador de cuantos productos quiere */}
                 <button
+                  className="btn1"
                   onClick={() => setAmountProduct(amountProduct - 1)}
                   disabled={amountProduct === 1}
                 >
@@ -78,7 +79,9 @@ const ProductsDetails = () => {
                 <b>
                   {amountProduct} {/* la cantidad de productos que quiere agregar */}
                 </b>
-                <button onClick={() => setAmountProduct(amountProduct + 1)}>
+                <button 
+                  className="btn2"
+                  onClick={() => setAmountProduct(amountProduct + 1)}>
                   + 1
                 </button>
               </div>
@@ -92,35 +95,22 @@ const ProductsDetails = () => {
       </div>
 
       {/* productos recomentados*/}
-      <div
-        style={{
-          margin: "2rem 0",
-          display: "flex",
-          flexDirection: "row",
-          gap: "2rem",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className="productDetail__recommended">
         {suggestionProducts.map((suggestionProduct) => (
           <div
             key={suggestionProduct.id}
-            style={{ width: "200px", border: "1px solid black", cursor: "pointer" }}
+            className="productDetail__recommended--imgs"
             onClick={() => sugProd(suggestionProduct.id)}
-            
           >
-            {" "}
             {/* este container es el las cards de los productos sugeridos */}
-            <img
-              style={{ width: "100px" }}
-              src={suggestionProduct.productImgs[0]}
-              alt=""
-            />
-            <h3> {suggestionProduct.title} </h3>
-            <b> {suggestionProduct.price} </b>
+            <div className="productDetail__recommended--img" style={{backgroundImage: `url(${suggestionProduct.productImgs[0]})`}}></div>
+            <div className="productDetail__recommended--info">
+              <h3> {suggestionProduct.title} </h3>
+              <b> {suggestionProduct.price} </b>
+            </div>
           </div>
         ))}
-        <button onClick={() => navigate("/")}>Home</button> {/* este boton me llevará al home */}
+        {/* <button onClick={() => navigate("/")}>Home</button> este boton me llevará al home} */}
       </div>
     </div>
   );
