@@ -37,7 +37,7 @@ const ShoppingCart = () => {
                     <div className='shooping__cart--img' style={{backgroundImage: `url(${prod.productImgs?.[1]})`}}></div>
                     <div className='shooping__cart--productInfo'>
                       <h3>{prod.title}</h3>
-                      <p><b>$</b> prod.price</p>
+                      <p><b>$</b>{ prod.price}</p>
                     </div>
                   </div>
                 ))

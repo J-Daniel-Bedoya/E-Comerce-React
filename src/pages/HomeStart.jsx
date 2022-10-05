@@ -51,7 +51,7 @@ const HomeStart = () => {
     const filterName = products.filter( product => { 
       return product.title.toLowerCase().includes(nameInput)
     })
-    console.log(filterName)
+    //console.log(filterName)
     if (filterName[0].title.includes(searchProductName)){
       setSearchProductsFilter(filterName)
     }else{
@@ -131,7 +131,7 @@ const HomeStart = () => {
             <div className="products__cards" key={product.id}>
               {/* quise hacer que las card fueran clicables y que al hacer click muestren el producto en detalle */}
               <div className="products__container--imag" onClick={() => navigate(`/product/${product.id}`)}>
-                <div className="products__cards--imgs" style={{backgroundImage: `url(${product.productImgs?.[0]})`}} onClick={() => navigate(`/product/${product.id}`)}></div>
+                <img className="ImageeProduct" src={product.productImgs[0]} alt="" />
               </div>
               <div onClick={() => navigate(`/product/${product.id}`)}>
                 <h4>{product.title}</h4>
