@@ -130,11 +130,13 @@ const HomeStart = () => {
         <div className="products__container--cards" >
           {
           searchProductsFilter.map((product) => (
-            <div className="products__cards" key={product.id}>
+            <div className="products__cards" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
               {/* quise hacer que las card fueran clicables y que al hacer click muestren el producto en detalle */}
+
               <div className="products__container--imag" onClick={() => navigate(`/product/${product.id}`)}>
                 <img className="ImageeProduct" src={product.productImgs[0]} alt="" />
               </div>
+
               <div onClick={() => navigate(`/product/${product.id}`)}>
                 <h4>{product.title}</h4>
                 <p>Price</p>

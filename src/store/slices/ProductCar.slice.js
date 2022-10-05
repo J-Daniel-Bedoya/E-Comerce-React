@@ -8,7 +8,7 @@ export const ProductCarSlice = createSlice({
   initialState: [],
   reducers: {
     
-    setcar: (state, actions) => {
+    setcar: (state, actions) => { 
       return actions.payload
     }
   }

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar } from "../store/slices/ProductCar.slice";
-
+ 
 import { getProductsThunk } from "../store/slices/products.slice";
 import "../styles/Products/ProductsDetails.css";
 
