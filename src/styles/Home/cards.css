@@ -11,7 +11,8 @@
 .products__cards{
   width: 16rem;
   height: 22rem;
-  background-color: rgb(221, 205, 251);
+  background-color: rgb(78, 2, 163);
+  color: #fff;
   border-radius: 3px;
   border: .1rem solid rgb(161, 140, 248);
   cursor: pointer;
@@ -23,36 +24,64 @@
   z-index: 1;
 }
 .products__container--imag{
-  align-items: center;
   border-bottom: 1px solid var(--light-gray);
   display: flex;
-  height: 250px;
   justify-content: center;
   position: relative;
+  align-items: center;
   width: 100%;
+  height: 15rem;
   background-color: white;
 }
 
 .ImageeProduct{
   display: block;
+  width: 90%;
   height: 70%;
   object-fit: contain;
-  width: 70%;
 }
-.products__cards--imgs{
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain; 
-  width: 12rem;
-  height: 12rem;
-  
+.products__info{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 32%;
+  gap: 1.5rem;
+  padding: .7rem 1rem;
 }
-
-.products__btn--add{
+.products__info--title h4{
+  font-size: 13px;
+  padding-left: 1rem;
+}
+.products__info--text{
+  width: 100%;
+  height: 4rem;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.products__info--price {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.products__info--price b{
+  padding-left: 1rem;
+}
+.fa-cart-shopping-icon {
   position: absolute;
-  bottom: 0;
-  z-index: 10;
+  right: .5rem;
+  bottom: .5rem;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
+  z-index: 10;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  color: #fff;
+  background-color: blueviolet;
 }

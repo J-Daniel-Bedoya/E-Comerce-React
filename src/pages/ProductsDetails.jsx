@@ -57,13 +57,13 @@ const ProductsDetails = () => {
         {/* este contianer es lo que tiene la info del producto */}
         <div className="productDetail__container--imgs">
           <div className="productDetail__container--ImgOne">
-            <button onClick={() => setNext(next-1)} disabled={next <= 0}>prev</button>
+            <button onClick={() => setNext(next-1)} disabled={next <= 0}><i class="fa-solid fa-chevron-left"></i></button>
             {
               !productImgUrl ? 
                 (<div style={{backgroundImage: `url(${productDetail?.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
                 : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
             }
-            <button onClick={() => setNext(next+1)} disabled={productDetail?.productImgs.length-1 <= next}>next</button>
+            <button onClick={() => setNext(next+1)} disabled={productDetail?.productImgs.length-1 <= next}><i class="fa-solid fa-chevron-right"></i></button>
           </div>
           <div className="productDetail__arrayImgs">
             {
@@ -126,7 +126,9 @@ const ProductsDetails = () => {
             onClick={() => sugProd(suggestionProduct.id)}
           >
             {/* este container es el las cards de los productos sugeridos */}
-            <div className="productDetail__recommended--img" style={{backgroundImage: `url(${suggestionProduct.productImgs[0]})`}}></div>
+            <div className="productDetail__recommended--container--imgs">
+              <div className="productDetail__recommended--img" style={{backgroundImage: `url(${suggestionProduct.productImgs[0]})`}}></div>
+            </div>
             <div className="productDetail__recommended--info">
               <h3> {suggestionProduct.title} </h3>
               <b> {suggestionProduct.price} </b>

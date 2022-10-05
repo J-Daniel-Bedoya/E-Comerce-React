@@ -137,11 +137,17 @@ const HomeStart = () => {
                 <img className="ImageeProduct" src={product.productImgs[0]} alt="" />
               </div>
 
-              <div onClick={() => navigate(`/product/${product.id}`)}>
-                <h4>{product.title}</h4>
-                <p>Price</p>
-                <b>{product.price}</b>
-                <button>VER MAS </button>
+              <div className="products__info" onClick={() => navigate(`/product/${product.id}`)}>
+                <div className="products__info--title">
+                  <h4>{product.title}</h4>
+                </div>
+                <div className="products__info--text">
+                  <div className="products__info--price">
+                    <p>Price</p>
+                    <b>{product.price}</b>
+                  </div>
+                  <i className="fa-solid fa-cart-shopping fa-cart-shopping-icon"></i>
+              </div>
               </div>
             </div>
           ))}
