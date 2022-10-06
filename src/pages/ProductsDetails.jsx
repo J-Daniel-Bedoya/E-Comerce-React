@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar } from "../store/slices/ProductCar.slice";
 import { getProductsThunk } from "../store/slices/products.slice";
+import { setShooping } from "../store/slices/shoopingTrue.slice";
 import "../styles/Products/ProductsDetails.css";
 
 const ProductsDetails = () => {
@@ -31,6 +32,7 @@ const ProductsDetails = () => {
     } // este objeto trae la catidad de productos y el id
     console.log(dataProduct);
     dispatch(addProductCar(dataProduct))
+    dispatch(setShooping())
   }
 
 // =====================================================================================================================

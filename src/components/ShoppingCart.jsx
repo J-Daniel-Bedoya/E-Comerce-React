@@ -58,12 +58,12 @@ const ShoppingCart = () => {
                   <h3>{prod.title}  (x{prod.productsInCart?.quantity}) </h3>
                   <p><b>$</b>{(prod.price * prod.productsInCart?.quantity)}</p>
                   <button onClick={() => deleteProductCar(prod.productsInCart?.productId)} > eliminar </button> {/* este boton elimina el product */}
-                  <button onClick={() => setAmountProduct(amountProduct - 1)}
+                  <button onClick={() => setAmountProduct(amountProduct - 1) } disabled={ amountProduct === 1 }
                   >
                     - 1
                   </button>
                   <b>
-                    { amountProduct} {/* la cantidad de productos que quiere agregar */}
+                    { amountProduct  } {/* la cantidad de productos que quiere agregar */}
                   </b>
                   <button onClick={() => setAmountProduct(amountProduct + 1)}  >
                     + 1
