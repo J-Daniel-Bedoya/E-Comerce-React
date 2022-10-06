@@ -4,11 +4,10 @@ import '../styles/Login/LoginUser.css'
 
 const LoginUser = () => {
 
-  const userName = localStorage.getItem("User Name")
+ // const userName = localStorage.getItem("User Name")
 
   return (
     <div className='login'>
-      <div> user Name: <b>{userName} </b> </div>
       <div className='login_newUser'>
         <div className='login__container--logo'>
             <h3>Iniciar seción</h3>
