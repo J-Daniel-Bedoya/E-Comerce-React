@@ -60,20 +60,31 @@ const ShoppingCart = () => {
             ProductsCars.map(prod => (
               <div key={prod.id} className='shooping__cart'>
                 <div className='shooping__cart--productInfo'>
-                  <h3>{prod.title}  (x{prod.productsInCart?.quantity}) </h3>
-                  <p><b>$</b>{(prod.price * prod.productsInCart?.quantity)}</p>
-                  <button onClick={() => deleteProductCar(prod.productsInCart?.productId)} > eliminar </button> {/* este boton elimina el product */}
-                  <button onClick={() => setAmountProduct(amountProduct - 1) } disabled={ amountProduct === 1 }
-                  >
-                    - 1
-                  </button>
-                  <b>
-                    { amountProduct  } {/* la cantidad de productos que quiere agregar */}
-                  </b>
-                  <button onClick={() => setAmountProduct(amountProduct + 1)}  >
-                    + 1
-                  </button >
-                  <button onClick={() => updateProductCar(prod.id, prod.productsInCart?.quantity )} > Actualizar </button>
+                  <div className='shooping__cart--productInfo-content'>
+                    <div className='shooping__cart--productInfo-title'>
+                      <h3>{prod.title}</h3>
+                      <b>X{prod.productsInCart?.quantity}</b>
+                    </div>
+                    <div className='shooping__cart--productInfo-contador'>
+                      {/* este boton elimina el product */}
+                      <button onClick={() => setAmountProduct(amountProduct + 1)}
+                      >
+                        - 1
+                      </button>
+                      <b>
+                        { amountProduct} {/* la cantidad de productos que quiere agregar */}
+                      </b>
+                      <button onClick={() => setAmountProduct(amountProduct + 1)}  >
+                        + 1
+                      </button >
+                    </div>
+                  </div>
+                  {/* botones de eliminar y de actualizar */}
+                  <div className='shooping__cart--btns-deleteAndUpdate'>
+                    <i className="fa-solid fa-circle-check" onClick={() => updateProductCar(prod.id, prod.productsInCart?.quantity )}></i>
+                    <i className="fa-solid fa-trash" onClick={() => deleteProductCar(prod.productsInCart?.productId)}></i> 
+                  </div>
+                  <p>Total: <b>$ {(prod.price * prod.productsInCart?.quantity)}</b></p>
                 </div>
               </div>
             ))
@@ -95,4 +106,4 @@ const ShoppingCart = () => {
   );
 };
 
-export default ShoppingCart;
+export  default ShoppingCart;
