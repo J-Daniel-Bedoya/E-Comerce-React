@@ -106,31 +106,40 @@ hr{
 }
 .products__input{
   width: 60%;
-  height: 2rem;
-  border-radius: 5px 0 0 5px;
+  height: 2.3rem;
+  border-radius: 20px 0 0 20px;
   outline: none;
   border: none;
 }
 .products__input--btn{
   border: none;
   width: 4rem;
-  background-color: rgba(112, 35, 183, 0.859);
-  color: #fff;
+  background-color: #7023b7db;
+  color: #c4bffd;
   font-weight: 500;
-  height: 2rem;
-  border-radius: 0 5px 5px 0;
+  height: 2.2.5rem;
+  border-radius: 0 20px 20px 0;
   cursor: pointer;
+  transition: .4s;
 }
+.products__input--btn:hover{
+  background-color: #a664e4db;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
 .products{
   position: relative;
   left: 18.8%;
   width: 83%;
   height: auto;
-  margin-top: 4rem;
-  padding-top: 5rem;
+  margin-top: 3rem;
+  padding-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
   z-index: 1;
 }

@@ -55,10 +55,16 @@
   align-items: center;
   font-size: 30px;
   cursor: pointer;
+  color: #fff;
+  transition: .4s;
 }
-.nav__icon{
-  color: rgb(115, 76, 221);
-  text-shadow: 1.5px -1.5px 1px rgb(233, 218, 252);
+.nav__icons:hover{
+  background-color: #fff;
+  color: rgb(91, 80, 246);
+  /* color: #a17afd; */
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 1px #fff;
+}
 
-}
+
 /* color: rgba(18, 4, 55, 0.749); */

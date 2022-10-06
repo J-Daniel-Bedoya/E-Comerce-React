@@ -37,6 +37,14 @@ const ShoppingCart = () => {
     dispatch(purchaseProductCAr())
   }
 
+  const prods = () => {
+    const rsMul = []
+    ProductsCars.map(prod => {
+      rsMul.push(prod.price * prod.productsInCart?.quantity)
+    })
+    const resultado = rsMul.reduce((a,b) => a+b,0);
+    return resultado  
+  }
   return (
     <div>
       <div className='container--shooping' onClick={() => dispatch(setShooping())}></div>
@@ -49,11 +57,8 @@ const ShoppingCart = () => {
         </div>
         <div className='shooping__container--products'>
           {
-            // trueProduct ? (
             ProductsCars.map(prod => (
-              // console.log(prod),
               <div key={prod.id} className='shooping__cart'>
-                {/*<div className='shooping__cart--img'></div>*/}
                 <div className='shooping__cart--productInfo'>
                   <h3>{prod.title}  (x{prod.productsInCart?.quantity}) </h3>
                   <p><b>$</b>{(prod.price * prod.productsInCart?.quantity)}</p>
@@ -72,22 +77,18 @@ const ShoppingCart = () => {
                 </div>
               </div>
             ))
-            // ) : (
-            //   productsActual?.map(prod => (
-            //     console.log(prod),
-            //     <div className='shooping__cart'>
-            //       <div className='shooping__cart--img' style={{backgroundImage: `url(${prod.productImgs?.[1]})`}}></div>
-            //       <div className='shooping__cart--productInfo'>
-            //         <h3>{prod.title}</h3>
-            //         <p><b>$</b> prod.price</p>
-            //       </div>
-            //     </div>
-            //   ))
-            // )
           }
         </div>
-        <div className='shooping__container--checkout'>
-          <button onClick={() => purchaseProduct()} >Checkout</button>
+        <div className='shooping__container--checkout'> 
+          <div className='f'>
+            <div className='shooping__container--checkout-total'>
+              <p>Total: </p>
+              <b>$ {prods()}</b>
+            </div>
+            <div>
+              <button onClick={() => purchaseProduct()} >Checkout</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

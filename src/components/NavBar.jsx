@@ -26,14 +26,11 @@ const NavBar = () => {
         </div>
       </Link>
       <div className="nav__icons--liksPages">
-        <Link to="/login" className="nav__icons user">
-            <i className="fa-solid fa-user nav__icon"></i>
+        <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
+          <p><i className="fa-solid fa-user nav__icon"></i></p>
         </Link>
         <Link to={"/purchases"} className="nav__icons purchases">
             <i className="fa-solid fa-bag-shopping nav__icon"></i>
-        </Link>
-        <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
-            <p>  LOGOUT</p>
         </Link>
         <div className="nav__icons store" onClick={() => dispatch(setShooping())}>
           <i className="fa-solid fa-cart-shopping nav__icon"></i>

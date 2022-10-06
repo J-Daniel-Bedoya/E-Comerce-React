@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import getConfig from '../../utils/getConfig';
 
 export const purchasesSlice = createSlice({
@@ -13,12 +12,9 @@ export const purchasesSlice = createSlice({
     }
 })
 
-export const purchasesThunk = () => dispatch => {
-    //dispatch(setIsLoading(true));
-    //const token = localStorage.getItem("token")
+export const purchasesThunk = () => (dispatch) => {
     return axios.get("https://ecommerce-api-react.herokuapp.com/api/v1/purchases", getConfig())
         .then((res) => dispatch(purchasesSet(res.data.data.purchases)))
-        //.finally(() => dispatch(setIsLoading(false)));
 }
 
 export const { purchasesSet } = purchasesSlice.actions;
