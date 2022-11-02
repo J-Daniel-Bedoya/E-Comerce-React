@@ -4,9 +4,9 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
 /* circulo del logo */
 .loginUp__card--imgCircle{
@@ -123,15 +123,15 @@
   font-size: 13px;
   margin-bottom: 1rem;
 }
-.loginUp__cart--footerForm .Link{
+.loginUp__cart--footerForm .loginUp__link{
   text-decoration: none;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 14px;
-  color: #060536;
+  color: #5112e4;
+  transition: .3s;
 }
-.Link:hover{
-  color: #653fe3;
-  font-weight: 700;
+.loginUp__cart--footerForm .loginUp__link:hover{
+  color: #060536;
 }
 .isVisible{
   position: relative;

@@ -4,8 +4,6 @@ import '../styles/Login/LoginUser.css'
 
 const LoginUser = () => {
 
- // const userName = localStorage.getItem("User Name")
-
   return (
     <div className='login'>
       <div className='login_newUser'>

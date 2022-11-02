@@ -1,9 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProductFromCar, getAddProduct, purchaseProductCAr, updateProductFromCart } from '../store/slices/ProductCar.slice';
 import { setShooping } from '../store/slices/shoopingTrue.slice';
-import { getProductsThunk } from "../store/slices/products.slice";
+// import { getProductsThunk } from "../store/slices/products.slice";
 import '../styles/navbar/ShoopingCart.css'
 
 const ShoppingCart = () => {
@@ -30,7 +29,6 @@ const ShoppingCart = () => {
 
   // eliminamos el producto
   const deleteProductCar = (id) => {
-    //alert(id)
     dispatch(deleteProductFromCar(id))
   }
 
@@ -48,11 +46,7 @@ const ShoppingCart = () => {
   }
 
   const contentProductsMenos = (index) => {
-    // if (index === indexProduct) {
       setAmountProduct(amountProduct - 1)
-    // }else{
-      // setIndexProduct(index)
-    // }
   }
   const contentProductsMas = (index) => {
     if (index === indexProduct) {

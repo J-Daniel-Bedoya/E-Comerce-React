@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Login/Logins/LoginUp.css';
@@ -19,21 +19,32 @@ const LoginUp = () => {
         localStorage.setItem("User Name", (`${res.data.data.user?.firstName} ${res.data.data.user?.lastName}`))
         Navigate("/")
       })
+      .catch(error => {
+        if(error.response?.status === 404)
+        alert("credenciales invalidas") 
+        console.log(error.response)
+      })
 
-
-        .catch(error => {
-          if(error.response?.status === 404)
-          alert("credenciales invalidas") 
-          console.log(error.response)
-        })
   }
   return (
     <div className='loginUp'>
+      <div>
+        <h3>Use these credentials<br />to access immediately</h3>
+        <br />
+        <b style={{fontSize: "14px"}}>Email:</b> 
+        <p style={{fontSize: "13px", fontWeight: "600", color: "#5112e4"}}>
+          usuariopordefecto58@gmail.com
+        </p>
+        <b style={{fontSize: "14px"}}>Password:</b> 
+        <p style={{fontSize: "13px", fontWeight: "600", color: "#5112e4"}}>
+          PORdefecto
+        </p>
+      </div>
       <div className='loginUp__card'>
         <div className='loginUp__card--imgCircle'>
           <div className='loginUp__card--container-logo'>
             <div className='loginUp__card--img'></div>
-            <h5>Login In</h5>
+            <h5>Login Up</h5>
           </div>
         </div>
         <form onSubmit={handleSubmit(submit)}className='loginUp__card--form'>
@@ -54,7 +65,7 @@ const LoginUp = () => {
             <button>Login Up</button>
           </div>
         </form>
-        <p className='loginUp__cart--footerForm'>Don't have account? <Link className='Link' to={"/login/SignUp"}>Sign Up</Link></p>
+        <p className='loginUp__cart--footerForm'>Don't have account? <Link className='loginUp__link' to={"/login/createAccount"}>Create Account</Link></p>
       </div>
     </div>
   );
