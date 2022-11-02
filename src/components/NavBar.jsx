@@ -8,7 +8,6 @@ import '../styles/navbar/Navbar.css'
 const NavBar = () => {
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   // funcion que elimina el token o que cierra sesion de la cuenta
   const logout = () =>{
     localStorage.setItem("token", "")

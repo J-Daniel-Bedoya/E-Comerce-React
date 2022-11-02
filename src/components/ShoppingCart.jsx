@@ -7,15 +7,16 @@ import { getProductsThunk } from "../store/slices/products.slice";
 import '../styles/navbar/ShoopingCart.css'
 
 const ShoppingCart = () => {
-  const dispatch = useDispatch()
-  const ProductsCars = useSelector(state => state.ProductCar)
-  const [amountProduct, setAmountProduct] = useState(1)
+
+  const dispatch = useDispatch();
+  const ProductsCars = useSelector(state => state.ProductCar);
+  // const shooping = useSelector(state => state.shooping)
+  const [amountProduct, setAmountProduct] = useState(1);
+  const [indexProduct, setIndexProduct] = useState(0);
 
   useEffect(() => {
     dispatch(getAddProduct())
   }, [])
-
-
 
   //actualizamos la cantidad de product
   const updateProductCar = (id, quantity) =>{
@@ -45,8 +46,24 @@ const ShoppingCart = () => {
     const resultado = rsMul.reduce((a,b) => a+b,0);
     return resultado  
   }
+
+  const contentProductsMenos = (index) => {
+    // if (index === indexProduct) {
+      setAmountProduct(amountProduct - 1)
+    // }else{
+      // setIndexProduct(index)
+    // }
+  }
+  const contentProductsMas = (index) => {
+    if (index === indexProduct) {
+      setAmountProduct(amountProduct + 1)
+    }else{
+      setIndexProduct(index)
+      setAmountProduct(1)
+    }
+  }
   return (
-    <div>
+    <>
       <div className='container--shooping' onClick={() => dispatch(setShooping())}></div>
       <div className='shooping'>
         <div className='shooping__card--imgCircle'>
@@ -57,7 +74,7 @@ const ShoppingCart = () => {
         </div>
         <div className='shooping__container--products'>
           {
-            ProductsCars.map(prod => (
+            ProductsCars.map((prod, index) => (
               <div key={prod.id} className='shooping__cart'>
                 <div className='shooping__cart--productInfo'>
                   <div className='shooping__cart--productInfo-content'>
@@ -67,14 +84,14 @@ const ShoppingCart = () => {
                     </div>
                     <div className='shooping__cart--productInfo-contador'>
                       {/* este boton elimina el product */}
-                      <button onClick={() => setAmountProduct(amountProduct + 1)}
+                      <button onClick={() => contentProductsMenos(index)} disabled={amountProduct <= 0}
                       >
                         - 1
                       </button>
                       <b>
-                        { amountProduct} {/* la cantidad de productos que quiere agregar */}
+                        { index === indexProduct && amountProduct } {/* la cantidad de productos que quiere agregar */}
                       </b>
-                      <button onClick={() => setAmountProduct(amountProduct + 1)}  >
+                      <button onClick={() => contentProductsMas(index)}  >
                         + 1
                       </button >
                     </div>
@@ -102,7 +119,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

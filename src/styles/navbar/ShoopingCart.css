@@ -22,7 +22,10 @@
   align-items: center;
   border-radius: 15px 0 0 15px;
   z-index: 20;
+  animation: delizarIzquierda .7s 1;
+  transition: 5s;
 }
+
 /* circulo del logo del e-commerce */
 .shooping__card--imgCircle {
   width: 6.5rem;
@@ -137,18 +140,18 @@
   transition: 1s;
 }
 .shooping__cart--btns-deleteAndUpdate .fa-circle-check{
-  transition: .4s;
+  transition: .3s;
 }
 .shooping__cart--btns-deleteAndUpdate .fa-trash{
-  transition: .4s;
+  transition: .3s;
 }
 .shooping__cart--btns-deleteAndUpdate .fa-circle-check:hover{
   color: #18d60e;
-  font-size: 20px;
+  transform: scale(1.3);
 }
 .shooping__cart--btns-deleteAndUpdate .fa-trash:hover{
   color: #e60f0f;
-  font-size: 20px;
+  transform: scale(1.3);
 }
 .shooping__cart--productInfo-contador{
   position: relative;
@@ -181,11 +184,11 @@
 /* nombre del producto seleccionado */
 .shooping__cart h3 {
   color: #000;
-  font-size: 15px;
+  font-size: 13px;
 }
 /* precio del producto seleccionado */
 .shooping__cart p {
-  color: rgb(8, 2, 31);
+  color: #08021f;
   font-size: 13px;
 }
 .shooping__container--checkout {
@@ -216,4 +219,39 @@
   background-color: #1a0747;
   color: #fff;
   cursor: pointer;
+}
+
+@keyframes delizarIzquierda {
+  0%{
+    transform: translateX(100%);
+  }
+  30%{
+    transform: translateX(-40%);
+  }
+  60%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-5%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}
+@keyframes delizarIzquiera {
+  0%{
+    transform: translateX(100%);
+  }
+  30%{
+    transform: translateX(-40%);
+  }
+  60%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-5%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
 }

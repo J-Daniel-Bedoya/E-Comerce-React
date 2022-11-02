@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import getConfig from '../../utils/getConfig';
   // agrege este slice para poder enviar la información del producto al componente de shooping y consumir la de forma rapida 
+const apiCard = "https://ecommerce-api-react.herokuapp.com/api/v1";
+
 
 export const ProductCarSlice = createSlice({
   name: 'ProductCarSlice',
@@ -15,14 +17,14 @@ export const ProductCarSlice = createSlice({
 })
 
 export const getAddProduct = () => dispatch => {
-    axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/cart`, getConfig())
+    axios.get(`${apiCard}/cart`, getConfig())
     .then(res => {
       dispatch(setcar(res.data.data.cart.products))
     })
     .catch(() => alert("no existen productos en el carrito"))
 }
 export const addProductCar =  (data) => dispatch => {
-    axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/cart`, data, getConfig())
+    axios.post(`${apiCard}/cart`, data, getConfig())
       .then(() => {
         dispatch(getAddProduct())
         alert(`producto agregado`)
@@ -33,7 +35,7 @@ export const addProductCar =  (data) => dispatch => {
       })
 }
 export const deleteProductFromCar = (id) => dispatch => {
-  axios.delete(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${id}`, getConfig())
+  axios.delete(`${apiCard}/cart/${id}`, getConfig())
   .then(() => {
     dispatch(getAddProduct())
     alert(`el producto se elimino correctamente`)
@@ -43,8 +45,19 @@ export const deleteProductFromCar = (id) => dispatch => {
     console.log(Error)
   })
 }
+// export const removeAllProducts = () => dispatch => {
+//   axios.delete(`${apiCard}/cart/${id}`, getConfig())
+//   .then(() => {
+//     dispatch(getAddProduct())
+//     alert(`el producto se elimino correctamente`)
+//   })
+//   .catch((Error) => {
+//     alert(`error al eliminar un producto al carrito`)
+//     console.log(Error)
+//   })
+// }
 export const updateProductFromCart = (data) => dispatch => {
-  axios.patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", data, getConfig())
+  axios.patch(`${apiCard}/cart`, data, getConfig())
   .then(() => {
     dispatch(getAddProduct())
     alert(`el producto se actualizado correctamente`)
@@ -56,7 +69,7 @@ export const updateProductFromCart = (data) => dispatch => {
 }
 
 export const purchaseProductCAr = () => dispatch => {
-  axios.post("https://ecommerce-api-react.herokuapp.com/api/v1/purchases", {}, getConfig())
+  axios.post(`${apiCard}/purchases`, {}, getConfig())
   .then(() => {
     dispatch(getAddProduct())
     alert(`has comprado el producto correctamente`)

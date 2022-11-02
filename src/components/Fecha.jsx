@@ -9,7 +9,17 @@ const Fecha = ({purchaseDate}) => {
   //console.log();
 
   return (
-    <div className='Header__fecha' >{myDateVar.toLocaleDateString()}</div>
+    <div className='info__tabla' >
+      <div className='Header__fecha'>
+        {myDateVar.toLocaleDateString()}
+      </div>
+      <div className='info__tabla--text'>
+        <p>Img Products</p>
+        <p>Title Products</p>
+        <p>Total Product</p>
+        <p>Price Product</p>
+      </div>
+    </div>
   );
 };
 

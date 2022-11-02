@@ -30,7 +30,6 @@ const ProductsDetails = () => {
       id,
       quantity: amount
     } // este objeto trae la catidad de productos y el id
-    console.log(dataProduct);
     dispatch(addProductCar(dataProduct))
     dispatch(setShooping())
   }
