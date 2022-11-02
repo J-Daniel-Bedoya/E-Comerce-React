@@ -42,7 +42,7 @@ const LoginUp = () => {
       </div>
       <div className='loginUp__card'>
         <div className='loginUp__card--imgCircle'>
-          <div className='loginUp__card--container-logo'>
+          <div className='loginUp__card--container-logo'> 
             <div className='loginUp__card--img'></div>
             <h5>Login Up</h5>
           </div>

@@ -117,6 +117,10 @@
   cursor: pointer;
   border: 1px solid #0a0947;
   margin: auto;
+  transition: .4s;
+}
+.loginUp__card--form button:hover{
+  background-color: #460ec9;
 }
 /* footer del formulario */
 .loginUp__cart--footerForm{

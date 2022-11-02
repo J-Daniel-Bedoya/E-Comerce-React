@@ -112,19 +112,23 @@
   font-weight: 500;
   cursor: pointer;
   border: 1px solid #0a0947;
+  transition: .4s;
+}
+.createAccount__card--form button:hover{
+  background-color: #460ec9;
 }
 /* footer del formulario */
 .createAccount__cart--footerForm{
   font-size: 13px;
   margin-top: 2rem;
 }
-.createAccount__cart--footerForm .Link{
+.createAccount__cart--footerForm .createAccount__link{
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
   color: #5112e4;
 }
-.Link:hover{
+.createAccount__link:hover{
   color: #060536;
 }
 .isVisible{
