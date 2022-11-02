@@ -16,7 +16,7 @@ const Fecha = ({purchaseDate}) => {
       <div className='info__tabla--text'>
         <p>Img Products</p>
         <p>Title Products</p>
-        <p>Total Product</p>
+        <p>Quantity Products</p>
         <p>Price Product</p>
       </div>
     </div>

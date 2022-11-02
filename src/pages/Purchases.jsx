@@ -11,6 +11,8 @@ const Purchases = () => {
   const dispatch = useDispatch()
   const purchases = useSelector(state => state.purchases)
   const [products, setProducts] = useState([])
+  const [priceTotal, setPriceTotal] = useState(0)
+  const [quatityTotal, setQuatityTotal] = useState(0)
   useEffect(() => {
     dispatch(purchasesThunk())
   }, [])
@@ -25,12 +27,26 @@ const Purchases = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const arrPrice = [0];
+    const arrQuatity = [0];
+    purchases.forEach(purchase => {
+      purchase.cart.products.forEach(product => {
+        arrPrice.push(product.price * product.productsInCart.quantity);
+        arrQuatity.push(Number(product.productsInCart.quantity));
+      })
+    })
+    const totalPriceProducts = arrPrice.reduce((a,b) => a+b);
+    const totalQuatityProducts = arrQuatity.reduce((a,b) => a+b);
+    setPriceTotal(totalPriceProducts)
+    setQuatityTotal(totalQuatityProducts)
+  }, [purchases])
   return (
     <div className='Container__Purchases'>
       <h1 className='purchases__title' >Purchases</h1>
       {
         purchases.map(purchase => (
-          
+          // console.log(purchase),
           <div className='card__purchases' key={purchase.id}>
           { /* console.log(purchase)*/}
             <Fecha purchaseDate={purchase?.createdAt} />
@@ -51,9 +67,13 @@ const Purchases = () => {
               }
             </div>
           </div>
+            
         ))
       }
-
+      <div className='table__purchases--footer'>
+        <p>Total products purchased: <b>{quatityTotal}</b></p>
+        <p>Total money spent: <b>$ {priceTotal}</b></p>
+      </div>
     </div>  
   );
 };
