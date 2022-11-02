@@ -39,7 +39,7 @@ const Purchases = () => {
                 purchase.cart.products?.map(product => (
                   <div  className='card__product--purchases' key={product.id}> {/* este es mas es container que contiene la info del produto que compro */}
                     <div className='img__products--purchases' 
-                      style={{'backgroundImage': `url(${products[product.id-1].productImgs[0]})`}}>
+                      style={{'backgroundImage': `url(${products[product.id-1]?.productImgs[0]})`}}>
                     </div>
                     <div className='product__title--purchases' >
                       <p>{product.title}</p>
