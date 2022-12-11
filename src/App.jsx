@@ -36,7 +36,9 @@ function App() {
         {
           shooping && <ShoppingCart />
         }
-        <Footer />
+        <div className='footer__app'>
+          <Footer />
+        </div>
         
       </div>
     </HashRouter>

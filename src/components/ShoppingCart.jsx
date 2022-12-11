@@ -1,52 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProductFromCar, getAddProduct, purchaseProductCAr, updateProductFromCart } from '../store/slices/ProductCar.slice';
+import { deleteProductFromCar, purchaseProductCart, updateProductFromCart } from '../store/slices/ProductCar.slice';
 import { setShooping } from '../store/slices/shoopingTrue.slice';
-// import { getProductsThunk } from "../store/slices/products.slice";
 import '../styles/navbar/ShoopingCart.css'
 
 const ShoppingCart = () => {
 
   const dispatch = useDispatch();
   const ProductsCars = useSelector(state => state.ProductCar);
-  // const shooping = useSelector(state => state.shooping)
   const [amountProduct, setAmountProduct] = useState(1);
   const [indexProduct, setIndexProduct] = useState(0);
-
-  useEffect(() => {
-    dispatch(getAddProduct())
-  }, [])
-
-  //actualizamos la cantidad de product
-  const updateProductCar = (id, quantity) =>{
+  const userId = localStorage.getItem("userId")
+  
+  const updateProductCar = (cartId, productId, quantity) =>{
     const dataProduct = {
-      id,
-      newQuantity: quantity + amountProduct
-    } // este objeto trae la catidad de productos y el id
-    dispatch(updateProductFromCart(dataProduct))
+      cartId,
+      productId,
+      quantity: quantity + amountProduct
+    }
+    dispatch(updateProductFromCart(userId, dataProduct))
+    setAmountProduct(1)
   }
 
-
   // eliminamos el producto
-  const deleteProductCar = (id) => {
-    dispatch(deleteProductFromCar(id))
+  const deleteProductCar = (cartId, productId) => {
+    const dataProduct = {
+      cartId,
+      productId,
+    }
+    dispatch(deleteProductFromCar(userId, dataProduct))
   }
 
   const purchaseProduct = () =>{
-    dispatch(purchaseProductCAr())
+    dispatch(purchaseProductCart(userId))
   }
 
-  const prods = () => {
-    const rsMul = []
-    ProductsCars.map(prod => {
-      rsMul.push(prod.price * prod.productsInCart?.quantity)
-    })
-    const resultado = rsMul.reduce((a,b) => a+b,0);
-    return resultado  
-  }
 
   const contentProductsMenos = (index) => {
-      setAmountProduct(amountProduct - 1)
+    if (index === indexProduct) {
+        setAmountProduct(amountProduct - 1)
+      }else{
+        setIndexProduct(index)
+        setAmountProduct(-1)
+      }
   }
   const contentProductsMas = (index) => {
     if (index === indexProduct) {
@@ -56,6 +52,7 @@ const ShoppingCart = () => {
       setAmountProduct(1)
     }
   }
+
   return (
     <>
       <div className='container--shooping' onClick={() => dispatch(setShooping())}></div>
@@ -68,17 +65,17 @@ const ShoppingCart = () => {
         </div>
         <div className='shooping__container--products'>
           {
-            ProductsCars.map((prod, index) => (
+            ProductsCars?.products?.map((prod, index) => (
               <div key={prod.id} className='shooping__cart'>
                 <div className='shooping__cart--productInfo'>
                   <div className='shooping__cart--productInfo-content'>
                     <div className='shooping__cart--productInfo-title'>
-                      <h3>{prod.title}</h3>
-                      <b>X{prod.productsInCart?.quantity}</b>
+                      <h3>{prod.product.name}</h3>
+                      <b>X{prod.quantity}</b>
                     </div>
                     <div className='shooping__cart--productInfo-contador'>
                       {/* este boton elimina el product */}
-                      <button onClick={() => contentProductsMenos(index)} disabled={amountProduct <= 0}
+                      <button onClick={() => contentProductsMenos(index)} disabled={amountProduct <= -prod.quantity}
                       >
                         - 1
                       </button>
@@ -92,10 +89,10 @@ const ShoppingCart = () => {
                   </div>
                   {/* botones de eliminar y de actualizar */}
                   <div className='shooping__cart--btns-deleteAndUpdate'>
-                    <i className="fa-solid fa-circle-check" onClick={() => updateProductCar(prod.id, prod.productsInCart?.quantity )}></i>
-                    <i className="fa-solid fa-trash" onClick={() => deleteProductCar(prod.productsInCart?.productId)}></i> 
+                    <i className="fa-solid fa-circle-check" onClick={() => updateProductCar(ProductsCars.id, prod.product.id, prod.quantity )}></i>
+                    <i className="fa-solid fa-trash" onClick={() => deleteProductCar(ProductsCars.id, prod.id)}></i> 
                   </div>
-                  <p>Total: <b>$ {(prod.price * prod.productsInCart?.quantity)}</b></p>
+                  <p>Total: <b>$ {(prod.price)}</b></p>
                 </div>
               </div>
             ))
@@ -105,7 +102,7 @@ const ShoppingCart = () => {
           <div className='f'>
             <div className='shooping__container--checkout-total'>
               <p>Total: </p>
-              <b>$ {prods()}</b>
+              <b>$ {ProductsCars?.totalPrice} USD</b>
             </div>
             <div>
               <button onClick={() => purchaseProduct()} >Checkout</button>

@@ -5,10 +5,11 @@
   margin-top: 2rem;
   background-color: rgb(6, 1, 31);
   position: relative;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 30;
+  z-index: 8;
 }
 /* contenedor de la información de contacto */
 .footer__contex {

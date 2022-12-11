@@ -1,50 +1,122 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import getConfig from '../../utils/getConfig';
-  // agrege este slice para poder enviar la información del producto al componente de shooping y consumir la de forma rapida 
-const apiCard = "https://ecommerce-api-react.herokuapp.com/api/v1";
+import { purchasesThunk } from './purchases.slice';
+import { setShooping } from './shoopingTrue.slice';
 
+const apiCard = "https://api-e-commerce-production.up.railway.app/api/v1";
 
 export const ProductCarSlice = createSlice({
   name: 'ProductCarSlice',
-  initialState: [],
+  initialState: {},
   reducers: {
-    
     setcar: (state, actions) => { 
       return actions.payload
     }
   }
 })
 
-export const getAddProduct = () => dispatch => {
-    axios.get(`${apiCard}/cart`, getConfig())
+
+export const getAddProduct = (id) => dispatch => {
+    axios.get(`${apiCard}/users/${id}/cart`, getConfig())
     .then(res => {
-      dispatch(setcar(res.data.data.cart.products))
+      dispatch(setcar(res.data))
     })
-    .catch(() => alert("no existen productos en el carrito"))
+    .catch((res) => {
+      console.log("NO hay productos en el carrito")
+    })
 }
-export const addProductCar =  (data) => dispatch => {
-    axios.post(`${apiCard}/cart`, data, getConfig())
+export const addProductCar =  (userId, data) => dispatch => {
+    axios.post(`${apiCard}/users/${userId}/cart`, data, getConfig())
       .then(() => {
-        dispatch(getAddProduct())
-        alert(`producto agregado`)
+        dispatch(getAddProduct(userId))
+        Swal.fire({
+          icon: "success",
+          title: "Producto agregado!",
+          text: "El producto a sido agregado al carrito exitosamente",
+          timer: 2500,
+        })
       })
       .catch((Error) => {
-        alert(`error al agregar un producto al carrito`)
+        Swal.fire({
+          icon: "error",
+          timer: "Error",
+          text: "Error al agregar un producto al carrito",
+        })
         console.log(Error)
       })
 }
-export const deleteProductFromCar = (id) => dispatch => {
-  axios.delete(`${apiCard}/cart/${id}`, getConfig())
+
+export const updateProductFromCart = (userId,data) => dispatch => {
+  axios.patch(`${apiCard}/cart/${data.cartId}/product/${data.productId}`, data, getConfig())
   .then(() => {
-    dispatch(getAddProduct())
-    alert(`el producto se elimino correctamente`)
+    dispatch(getAddProduct(userId))
+    Swal.fire({
+      icon: "success",
+      title: "Producto actualizado!",
+      text: "El producto se ha actualizado correctamente",
+      timer: 2500,
+    })
   })
   .catch((Error) => {
-    alert(`error al eliminar un producto al carrito`)
+    Swal.fire({
+      icon: "error",
+      timer: "Error",
+      text: "Error al actualizar un producto al carrito",
+    })
     console.log(Error)
   })
 }
+export const deleteProductFromCar = (userId, data) => dispatch => {
+  axios.delete(`${apiCard}/cart/${data.cartId}/product/${data.productId}`, getConfig())
+  .then(() => {
+    dispatch(getAddProduct(userId))
+    // alert(`el producto se elimino correctamente`)
+    Swal.fire({
+      icon: "success",
+      title: "Producto eliminado!",
+      text: "El producto se ha elimino correctamente",
+      timer: 1000,
+    })
+  })
+  .catch((Error) => {
+    Swal.fire({
+      icon: "error",
+      timer: "Error",
+      text: "Error al eliminar un producto al carrito",
+    })
+    console.log(Error)
+  })
+}
+
+export const purchaseProductCart = (userId) => dispatch => {
+
+  axios.post(`${apiCard}/users/${userId}/orders`, getConfig())
+  .then((res) => {
+    dispatch(getAddProduct(userId))
+    dispatch(purchasesThunk(userId))
+    Swal.fire({
+      icon: "success",
+      title: 'Productos comprados!',
+      text: "Has comprado los productos correctamente",
+      confirmButtonText: 'Ok',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(setShooping())
+      } 
+    })
+  })
+  .catch((Error) => {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Error al comprar los productos del carrito",
+    })
+    console.log(Error)
+  })
+}
+
 // export const removeAllProducts = () => dispatch => {
 //   axios.delete(`${apiCard}/cart/${id}`, getConfig())
 //   .then(() => {
@@ -56,73 +128,8 @@ export const deleteProductFromCar = (id) => dispatch => {
 //     console.log(Error)
 //   })
 // }
-export const updateProductFromCart = (data) => dispatch => {
-  axios.patch(`${apiCard}/cart`, data, getConfig())
-  .then(() => {
-    dispatch(getAddProduct())
-    alert(`el producto se actualizado correctamente`)
-  })
-  .catch((Error) => {
-    alert(`error al actualizar un producto al carrito`)
-    console.log(Error)
-  })
-}
-
-export const purchaseProductCAr = () => dispatch => {
-  axios.post(`${apiCard}/purchases`, {}, getConfig())
-  .then(() => {
-    dispatch(getAddProduct())
-    alert(`has comprado el producto correctamente`)
-  })
-  .catch((Error) => {
-    alert(`error al comprar los productos del carrito`)
-    console.log(Error)
-  })
-}
 
 export const { setcar } = ProductCarSlice.actions;
 export default ProductCarSlice.reducer;
 
 
-
-/*
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-  // agrege este slice para poder enviar la información del producto al componente de shooping y consumir la de forma rapida 
-
-export const addProductSlice = createSlice({
-  name: 'addProduct',
-  initialState: JSON.parse(localStorage.getItem("procutCartPrice")),
-  reducers: {
-    setAddProduct: (state, actions) => {
-      const f = JSON.parse(localStorage.getItem("procutCartPrice"))
-      if (f === null) {
-        state = [actions.payload]
-      }
-      const prod = [...state]
-      prod.push(actions.payload)
-      if (prod[0].id === prod[1].id){
-        const l = prod.splice(0, 1)
-        localStorage.setItem("procutCartPrice", JSON.stringify(l))
-      }else{
-        localStorage.setItem("procutCartPrice", JSON.stringify(prod))
-      }
-      console.log(prod)
-      return prod
-    }
-  }
-})
-  
-export const getSetAddProduct = (addProductId) => dispatch => {
-    axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/${addProductId}`)
-    .then(res => {
-      dispatch(setAddProduct(res.data.data.product))
-    })
-  
-}
-
-export const { setAddProduct } = addProductSlice.actions;
-export default addProductSlice.reducer;d
-
-
-*/

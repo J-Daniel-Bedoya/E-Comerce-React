@@ -4,12 +4,15 @@ import { getProductsThunk } from "../store/slices/products.slice";
 import axios from "axios";
 import "../styles/Home/HomeStart.css";
 import "../styles/Home/cards.css";
-import { useNavigate } from "react-router-dom";
-import ProductCarSlice, { getAddProduct } from "../store/slices/ProductCar.slice";
+import { useNavigate, useParams } from "react-router-dom";
+import { addProductCar } from "../store/slices/ProductCar.slice";
+import { setShooping } from "../store/slices/shoopingTrue.slice";
 
 const HomeStart = () => {
+  const apiEcommerce = "https://api-e-commerce-production.up.railway.app/api/v1/";
+
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const products = useSelector((state) => state.products);
   const [categories, setCategories] = useState([]);
   const [searchProductsFilter, setSearchProductsFilter] = useState([]);
@@ -18,17 +21,11 @@ const HomeStart = () => {
   const [searchTo, setSearchTo] = useState('');
 
   useEffect(() => {
-    dispatch(getProductsThunk())
-    dispatch(getAddProduct())
-  }, [])
-
-  useEffect(() => {
     axios
-      .get(
-        "https://ecommerce-api-react.herokuapp.com/api/v1/products/categories"
-      )
+      .get(`${apiEcommerce}/categories`)
       .then((res) => {
-        setCategories(res.data.data.categories);
+        setCategories(res.data);
+        dispatch(getProductsThunk())
       });
   }, []);
 
@@ -36,13 +33,17 @@ const HomeStart = () => {
   useEffect(() => {
     setSearchProductsFilter(products);
   }, [products]);
-
+// console.log(products)
   const filterId = (id) => {
-    const filterId = products.filter(fil => fil.category.id === id)
-    setSearchProductsFilter(filterId)
+    if ( id !== "Cameras" ) {
+      const filterId = products.filter(fil => fil.category.name_category === id)
+      console.log(filterId)
+      setSearchProductsFilter(filterId)
+    }
   }
 
   const filterPrice = () => {
+
     const filterPrice = products.filter( product => {
       return product.price >= (+searchFrom - 1) && product.price <= (+searchTo + 1)
     })
@@ -51,13 +52,29 @@ const HomeStart = () => {
   const filterName = () => {
     const nameInput = searchProductName.toLowerCase()
     const filterName = products.filter( product => { 
-      return product.title.toLowerCase().includes(nameInput)
+      return product.name.toLowerCase().includes(nameInput)
     })
-    if (filterName[0].title.includes(searchProductName)){
+    if (filterName[0].name.includes(searchProductName)){
       setSearchProductsFilter(filterName)
     }else{
       alert("El producto no existe")
     }
+  }
+
+
+  const userId = localStorage.getItem("userId")
+
+  const pageDetail = (idProd) => {
+    navigate(`/product/${idProd}`)
+  }
+  const addProductInCart = (idProd) => {
+    const dataProduct = {
+      quantity: 1,
+      status: true,
+      productId: idProd,
+    }
+    dispatch(addProductCar(userId, dataProduct))
+    dispatch(setShooping())
   }
 
   return (
@@ -79,6 +96,8 @@ const HomeStart = () => {
                 type="number" 
                 value={searchFrom}
                 onChange={e => setSearchFrom(e.target.value)}
+                required
+                placeholder="60"
               />
             </div>
             <div className="filters__form--input">
@@ -88,6 +107,7 @@ const HomeStart = () => {
                 type="number" 
                 value={searchTo}
                 onChange={e => setSearchTo(e.target.value)}
+                placeholder="1200"
               />
             </div>
             <div className="filters__form--btn">
@@ -103,9 +123,9 @@ const HomeStart = () => {
             <li onClick={() =>  dispatch(getProductsThunk())} > {/* jose este lo añadi para que me traiga todos lo productos */}
             All  products
             </li>
-            {categories.map((category) => (
-              <li onClick={() => filterId(category.id)} key={category.id}>
-                {category.name}
+            {categories.map((category, i) => (
+              <li onClick={() => filterId(category.nameCategory)} key={i}>
+                {category.nameCategory}
               </li>
             ))}
           </ul>
@@ -119,29 +139,32 @@ const HomeStart = () => {
             type="text" 
             value={searchProductName}
             onChange={e => setSearchProductName(e.target.value)}
+            placeholder={"Copia el titulo completo del producto"}
           />
           <button onClick={filterName} className="products__input--btn"><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div className="products__container--cards" >
           {
           searchProductsFilter.map((product) => (
-            <div className="products__cards" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+            <div className="products__cards" key={product.id}>
               {/* quise hacer que las card fueran clicables y que al hacer click muestren el producto en detalle */}
 
-              <div className="products__container--imag" onClick={() => navigate(`/product/${product.id}`)}>
-                <img className="ImageeProduct" src={product.productImgs[0]} alt="" />
+              <div className="products__container--imag" onClick={() => pageDetail(product.id)}>
+                <img className="ImageeProduct" src={product.image[0]} alt="" />
               </div>
 
-              <div className="products__info" onClick={() => navigate(`/product/${product.id}`)}>
+              <div className="products__info">
                 <div className="products__info--title">
-                  <h4>{product.title}</h4>
+                  <h4>{product.name}</h4>
                 </div>
                 <div className="products__info--text">
                   <div className="products__info--price">
                     <p>Price</p>
-                    <b>{product.price}</b>
+                    <b>${product.price} USD</b>
                   </div>
-                  <i className="fa-solid fa-cart-shopping fa-cart-shopping-icon"></i>
+                  <div>
+                    <i className="fa-solid fa-cart-shopping fa-cart-shopping-icon" onClick={() => addProductInCart(product.id)}></i>
+                  </div>
               </div>
               </div>
             </div>

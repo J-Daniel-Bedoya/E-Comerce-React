@@ -56,6 +56,13 @@ hr{
   outline: none;
   border: none;
   height: 1.8rem;
+  padding-left: .5rem;
+}
+.filters__form--input input::placeholder{
+  color: rgb(161, 159, 159);
+}
+.filters__form--input input:focus::placeholder{
+  color: rgb(231, 230, 230);
 }
 /* filtro por precio botones del formulario */
 .filters__form--btn{
@@ -102,31 +109,44 @@ hr{
 .products__input--container{
   width: 100%;
   display: flex;
-  justify-content: center;
+  padding-left: 14rem;
+  /* justify-content: center; */
 }
 .products__input{
-  width: 60%;
+  width: 45%;
   height: 2.3rem;
   border-radius: 20px 0 0 20px;
   outline: none;
   border: none;
+  padding-left: 1.5rem;
+}
+.products__input::placeholder{
+  color: rgb(151, 150, 150);
+}
+.products__input:focus::placeholder{
+  color: rgb(230, 225, 225);
 }
 .products__input--btn{
   border: none;
-  width: 4rem;
-  background-color: #7023b7db;
+  width: 6rem;
+  background-color: #fff;
   color: #c4bffd;
   font-weight: 500;
   height: 2.2.5rem;
   border-radius: 0 20px 20px 0;
   cursor: pointer;
-  transition: .4s;
+  transition: 1s;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 1rem;
 }
 .products__input--btn:hover{
-  background-color: #a664e4db;
+  background-color: #480686;
   color: #fff;
-  font-size: 18px;
   font-weight: bold;
+  padding-right: 2.5rem;
 }
 
 

@@ -8,13 +8,14 @@ const CreateAccount = () => {
   const [isVisible, setIsVisible] = useState(true)
   const { register, handleSubmit, reset } = useForm();
   const Navigate = useNavigate()
+  const apiEcommerce = "https://api-e-commerce-production.up.railway.app/api/v1/";
 
   const submit = (data) => {
-    axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users`, data)
+    axios.post(`${apiEcommerce}/users`, data)
       .then(res => {
         alert("usuario registado")
         clear()
-        Navigate("/")
+        Navigate("/login")
       })
       .catch(error => {
         alert("error al crear el usuario!")
@@ -24,9 +25,7 @@ const CreateAccount = () => {
   // esta funcion me borra lo elementos del input
   const clear = () =>{
     reset({
-      firstName: "",
-      lastName: "",
-      phone: "",
+      username: "",
       email: "",
       password: ""  
     })
@@ -43,16 +42,8 @@ const CreateAccount = () => {
         </div>
         <form onSubmit={handleSubmit(submit)} className='createAccount__card--form'>
           <div className='createAccount__card--input'>
-            <label htmlFor="FirstName"><i className="fa-solid fa-user"></i></label>
-            <input id='FirstName' type="text" placeholder="First Name" {...register("firstName")} />
-          </div>
-          <div className='createAccount__card--input'>
             <label htmlFor="LastName"><i className="fa-solid fa-user"></i></label>
-            <input id='LastName' type="text" placeholder="Last Name" {...register("lastName")}/>
-          </div>
-          <div className='createAccount__card--input'>
-            <label htmlFor="Phone"><i className="fa-solid fa-phone"></i></label>
-            <input id='Phone' type="number" placeholder="Phone" {...register("phone")}/>
+            <input id='LastName' type="text" placeholder="Name" {...register("username")}/>
           </div>
           <div className='createAccount__card--input'>
             <label htmlFor="email"><i className="fa-solid fa-envelope"></i></label>

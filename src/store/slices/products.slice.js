@@ -1,19 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-  
+
+const apiProd = "https://api-e-commerce-production.up.railway.app/api/v1/";
+
 export const productsSlice = createSlice({
   name: 'products',
   initialState: [],
   reducers: {
     setProducts: (state, actions) => {
+      
       return actions.payload
     }
   }
 })
   
 export const getProductsThunk = () => dispatch => {
-  axios.get("https://ecommerce-api-react.herokuapp.com/api/v1/products")
-  .then(res => dispatch(setProducts(res.data.data.products)))
+  axios.get(`${apiProd}/products`)
+  .then(res => dispatch(setProducts(res.data)))
 }
 
 export const { setProducts } = productsSlice.actions;

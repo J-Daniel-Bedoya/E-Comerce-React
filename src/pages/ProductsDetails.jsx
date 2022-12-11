@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar } from "../store/slices/ProductCar.slice";
@@ -8,47 +7,46 @@ import { setShooping } from "../store/slices/shoopingTrue.slice";
 import "../styles/Products/ProductsDetails.css";
 
 const ProductsDetails = () => {
-  // en la api hay una url para traer un producto por id pero no lo voy a usar pq sera un poco innecesario
-  // entonces usare el slice de que tenemos con todos los productos  y los filtrare con el id y yap
+
   const { id } = useParams();
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const productList = useSelector((state) => state.products);
-  const productDetail = productList.find((product) => product.id === +id); //  aca me filtra el producto usando el id de el que esta en la url
-  const [amountProduct, setAmountProduct] = useState(1); // esta en la cantidad de productos que va a comprasr
-  //const {register, handleSubmit} = useForm()
+  const productDetail = productList.find((product) => product.id === +id); 
+  const [amountProduct, setAmountProduct] = useState(1);
 
-// =====================================================================================================================
+
   const suggestionProducts = productList.filter(
-    (product) => product.category.id === productDetail.category.id
-  ); // aca es la logica de los productos recomendados que es que comparo la id de la categoria de cada producto de la lista y si el id de la categoria coinside con el id de la categoria que estamos mostrando me  va a mostras los productos sugeridos
-  // console.log(productList);
-// =====================================================================================================================
+    (product) => product.category.name_category === productDetail.category.name_category
+  ); 
+ console.log(productList)
+  const userId = localStorage.getItem("userId")
 
-  const addCartSubmit = (amount) =>{
+  const addCartSubmit = (id, amount) =>{
     const dataProduct = {
-      id,
-      quantity: amount
-    } // este objeto trae la catidad de productos y el id
-    dispatch(addProductCar(dataProduct))
+      quantity: amount,
+      status: true,
+      productId: id,
+    }
+    dispatch(addProductCar(userId, dataProduct))
     dispatch(setShooping())
   }
 
-// =====================================================================================================================
+
   const [productImgUrl, setProductImgUrl] = useState("")
-  // const [prev, setPrev] = useState(0)
+
   const [next, setNext] = useState(0)
-// =====================================================================================================================
+
     useEffect(() => {
       dispatch(getProductsThunk())
     }, [])
-// =====================================================================================================================
+
   const sugProd = (sug) => {
     navigate(`/product/${sug}`)
     setNext(0)
     setAmountProduct(1)
   }
-// =====================================================================================================================
+
   return (
     <div className="productDetails">
       {/*  los estilos los puedes quitar solo fue para ver bien lo que traiga */}
@@ -60,18 +58,18 @@ const ProductsDetails = () => {
             <button onClick={() => setNext(next-1)} disabled={next <= 0}><i className="fa-solid fa-chevron-left"></i></button>
             {
               !productImgUrl ? 
-                (<div style={{backgroundImage: `url(${productDetail?.productImgs[`${next}`]})`}} className="productDetails__imgsOne"></div>) 
+                (<div style={{backgroundImage: `url(${productDetail?.image[next]})`}} className="productDetails__imgsOne"></div>) 
                 : (<div style={{backgroundImage: `url(${productImgUrl})`}} className="productDetails__imgsOne"></div>)
             }
-            <button onClick={() => setNext(next+1)} disabled={productDetail?.productImgs.length-1 <= next}><i className="fa-solid fa-chevron-right"></i></button>
+            <button onClick={() => setNext(next+1)} disabled={productDetail?.image?.length-1 <= next}><i className="fa-solid fa-chevron-right"></i></button>
           </div>
           <div className="productDetail__arrayImgs">
             {
               /* las 3 imagenes del producto, te recuerdo que los los estilos que le pongo son solo para yo ver bien lo que pongo */
-              productDetail?.productImgs.map((productImg) => (
+              productDetail?.image.map((productImg, i) => (
                 <div 
                   className="productDetails__imgs"
-                  key={productImg}
+                  key={i}
                   style={{"backgroundImage": `url(${productImg})`}}
                   onClick={() => setProductImgUrl(productImg)}
                 > 
@@ -81,12 +79,12 @@ const ProductsDetails = () => {
           </div>
         </div>  
         <div className="productDetail__detail">
-          <h2>{productDetail?.title}</h2>
+          <h2>{productDetail?.name}</h2>
           <p>{productDetail?.description} {/* description de producto */}</p>
           <div className="productDetail__priceAndContador">
             <div>
               <p>Price</p>
-              <h3>{productDetail?.price}{/* precio de producto */}</h3>
+              <h3>$ {productDetail?.price} USD{/* precio de producto */}</h3>
             </div>
             <div className="productDetail__contador--container">
               <p>Quantity</p>
@@ -111,7 +109,7 @@ const ProductsDetails = () => {
 
             </div>
           </div>
-          <div onClick={() => addCartSubmit(amountProduct)} className="productDetail__addCart">
+          <div onClick={() => addCartSubmit(productDetail.id, amountProduct)} className="productDetail__addCart">
             <h4>Add to cart</h4>
           </div>
         </div>
@@ -119,23 +117,24 @@ const ProductsDetails = () => {
 
       {/* productos recomentados*/}
       <div className="productDetail__recommended">
-        {suggestionProducts.map((suggestionProduct) => (
-          <div
-            key={suggestionProduct.id}
-            className="productDetail__recommended--imgs"
-            onClick={() => sugProd(suggestionProduct.id)}
-          >
-            {/* este container es el las cards de los productos sugeridos */}
-            <div className="productDetail__recommended--container--imgs">
-              <div className="productDetail__recommended--img" style={{backgroundImage: `url(${suggestionProduct.productImgs[0]})`}}></div>
+        <div className="center__prod-recommended">
+          {suggestionProducts.map((suggestionProduct, i) => (
+            <div
+              key={i}
+              className="productDetail__recommended--imgs"
+              onClick={() => sugProd(suggestionProduct.id)}
+            >
+              {/* este container es el las cards de los productos sugeridos */}
+              <div className="productDetail__recommended--container--imgs">
+                <div className="productDetail__recommended--img" style={{backgroundImage: `url(${suggestionProduct.image?.[0]})`}}></div>
+              </div>
+              <div className="productDetail__recommended--info">
+                <h3> {suggestionProduct.name} </h3>
+                <b>$ {suggestionProduct.price} USD</b>
+              </div>
             </div>
-            <div className="productDetail__recommended--info">
-              <h3> {suggestionProduct.title} </h3>
-              <b> {suggestionProduct.price} </b>
-            </div>
-          </div>
-        ))}
-        {/* <button onClick={() => navigate("/")}>Home</button> este boton me llevará al home} */}
+          ))}
+        </div>
       </div>
     </div>
   );
