@@ -13,13 +13,13 @@ const Footer = () => {
           <p>Para más detalles contactame!</p>
           <div className='footer__icons'>
             <a 
-              href="https://www.linkedin.com/in/jose-daniel-b-b9a8021b1/" target={"_blank"}>
+              href="https://www.linkedin.com/in/jose-daniel-bedoya-chavarriaga-b9a8021b1/" target={"_blank"}>
               <i className="fa-brands fa-linkedin-in icons"></i></a>         
             <a 
               href="https://github.com/J-Daniel-Bedoya" target={"_blank"}>
               <i className="fa-brands fa-github icons"></i></a>         
             <a 
-              href="https://danielbedoya.netlify.app" target={"_blank"}>
+              href="https://portafolio-danielbedoya.netlify.app/" target={"_blank"}>
               <i className="fa-solid fa-briefcase icons"></i></a> 
             <a 
               href="mailto:jbedoyachavarriaga@gmail.com">
