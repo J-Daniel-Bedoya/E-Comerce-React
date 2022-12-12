@@ -60,7 +60,7 @@ const ShoppingCart = () => {
         <div className='shooping__card--imgCircle'>
           <div className='shooping__card--container-logo'>
             <div className='shooping__card--img'></div>
-            <h5>Cart</h5>
+            <h5>MyShop</h5>
           </div>
         </div>
         <div className='shooping__container--products'>

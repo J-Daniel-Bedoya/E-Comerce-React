@@ -37,7 +37,7 @@ const CreateAccount = () => {
         <div className='createAccount__card--imgCircle'>
           <div className='createAccount__card--container-logo'>
             <div className='createAccount__card--img'></div>
-            <h5>Create Account</h5>
+            <h5>MyShop</h5>
           </div>
         </div>
         <form onSubmit={handleSubmit(submit)} className='createAccount__card--form'>
