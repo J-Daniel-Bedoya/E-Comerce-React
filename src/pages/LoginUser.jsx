@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import '../styles/Login/LoginUser.css'
 
 const LoginUser = () => {
-
+  const userId = localStorage.getItem("userId");
   return (
     <div className='login'>
+
       <div className='login_newUser'>
         <div className='login__container--logo'>
             <h3>Iniciar seción</h3>

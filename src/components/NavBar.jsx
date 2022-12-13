@@ -5,7 +5,6 @@ import { getAddProduct } from "../store/slices/ProductCar.slice";
 import '../styles/Home/HomeStart.css'
 import '../styles/navbar/Navbar.css'
 import { useDispatch } from "react-redux";
-import { purchasesThunk } from "../store/slices/purchases.slice";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -24,10 +23,10 @@ const NavBar = () => {
       alert("Inicia sesion para acceder a todas las caracteristicas", navigate("/login"))
     }
   }
-  const purch = () => {
-    dispatch(purchasesThunk(userId));
-    console.log(userId)
-  }
+  // const purch = () => {
+  //   dispatch(purchasesThunk(userId));
+  //   console.log(userId)
+  // }
   
   return (
     <div className="Navbar" >
@@ -43,7 +42,7 @@ const NavBar = () => {
         <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
           <p><i className="fa-solid fa-user nav__icon"></i></p>
         </Link>
-        <Link to={"/purchases"} onClick={() => purch()} className="nav__icons purchases">
+        <Link to={"/purchases"} className="nav__icons purchases">
             <i className="fa-solid fa-bag-shopping nav__icon"></i>
         </Link>
         <div className="nav__icons store" onClick={() => shoping()}>

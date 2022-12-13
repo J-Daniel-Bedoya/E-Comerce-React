@@ -7,6 +7,7 @@ import "../styles/Home/cards.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar } from "../store/slices/ProductCar.slice";
 import { setShooping } from "../store/slices/shoopingTrue.slice";
+import Swal from "sweetalert2";
 
 const HomeStart = () => {
   const apiEcommerce = "https://api-e-commerce-production.up.railway.app/api/v1/";
@@ -65,16 +66,38 @@ const HomeStart = () => {
   const userId = localStorage.getItem("userId")
 
   const pageDetail = (idProd) => {
-    navigate(`/product/${idProd}`)
+    if (userId !== null) {
+      navigate(`/product/${idProd}`)
+    }else{
+      Swal.fire({
+        icon: "warning",
+        title: "Registrate!",
+        text: "Para poder realizar esta acción necesitas registrarte en el sitio.",
+        confirmButtonText: "Ok",
+        cancelButtonText: "No quiero registrarme",
+      }).then(res => {
+        if(res.isConfirmed) {
+          navigate("/login");
+        }else{
+          Swal.fire({
+            icon: "info",
+            title: "Registro no deseado",
+            text: "Haz decidido no registrarte pero tranquil@ siempre puedes volver a intentarlo"
+          })
+        }
+      })
+    }
   }
   const addProductInCart = (idProd) => {
-    const dataProduct = {
-      quantity: 1,
-      status: true,
-      productId: idProd,
+    if (userId !== null) {
+      const dataProduct = {
+        quantity: 1,
+        status: true,
+        productId: idProd,
+      }
+      dispatch(addProductCar(userId, dataProduct))
+      dispatch(setShooping())
     }
-    dispatch(addProductCar(userId, dataProduct))
-    dispatch(setShooping())
   }
 
   return (

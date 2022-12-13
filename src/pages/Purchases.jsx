@@ -1,40 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import '../styles/Purchases/Purchases.css'
-import { purchasesThunk } from '../store/slices/purchases.slice';
 import Fecha from '../components/Fecha';
+import getConfig from '../utils/getConfig';
+import axios from 'axios';
 
 const Purchases = () => {
   
-  const dispatch = useDispatch()
-  const purchases = useSelector(state => state.purchases)
 
+  const [purchases, setPurchases] = useState([]);
+  const apiPurchase = "https://api-e-commerce-production.up.railway.app/api/v1";
   const userId = localStorage.getItem("userId");
   useEffect(() => {
-    dispatch(purchasesThunk(userId));
+    axios.get(`${apiPurchase}/users/${userId}/orders`, getConfig())
+    .then((res) => {
+      setPurchases(res.data)
+      console.log(res.data)
+    })
+    .catch((err) => {
+      throw(err)
+    })
   }, [])
   
-  // console.log(purchases)
-  const [quantityTotal, setQuantityTotal] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  useEffect(() => {
-    const arrPrice = [];
-    const arrQuantity = [];
-    purchases.purchased?.forEach(purch => {
-      purch.orders.forEach(order => {
-        arrPrice.push(order.price);
-        arrQuantity.push(order.quantity);
-      })
-    })
-    console.log(arrQuantity)
-    // if(arrQuantity !== u) {
-      const totalQuantity = arrQuantity.reduce((a,b) => a+b);
-      const priceTotal = arrPrice.reduce((a,b) => a + b);
-      setQuantityTotal(totalQuantity);
-      setTotalPrice(priceTotal);
-    // }
 
-  }, [])
 
   return (
     <div className='Container__Purchases'>
@@ -71,10 +58,10 @@ const Purchases = () => {
             
         ))
       }
-      <div className='table__purchases--footer'>
+      {/* <div className='table__purchases--footer'>
         <p>Total products purchased: <b>{quantityTotal}</b></p>
         <p>Total money spent: <b>$ {totalPrice}</b></p>
-      </div>
+      </div> */}
     </div>  
   );
 };

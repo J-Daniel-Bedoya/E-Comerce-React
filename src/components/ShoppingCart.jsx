@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProductFromCar, purchaseProductCart, updateProductFromCart } from '../store/slices/ProductCar.slice';
 import { setShooping } from '../store/slices/shoopingTrue.slice';

@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import getConfig from '../../utils/getConfig';
-import { purchasesThunk } from './purchases.slice';
 import { setShooping } from './shoopingTrue.slice';
 
 const apiCard = "https://api-e-commerce-production.up.railway.app/api/v1";
@@ -95,7 +94,6 @@ export const purchaseProductCart = (userId) => dispatch => {
   axios.post(`${apiCard}/users/${userId}/orders`, getConfig())
   .then((res) => {
     dispatch(getAddProduct(userId))
-    dispatch(purchasesThunk(userId))
     Swal.fire({
       icon: "success",
       title: 'Productos comprados!',
