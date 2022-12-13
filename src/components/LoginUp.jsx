@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import "../styles/Login/Logins/LoginUp.css";
 
 const LoginUp = () => {
@@ -17,17 +18,27 @@ const LoginUp = () => {
         data
       )
       .then((res) => {
-        console.log(res.data);
-        alert("usuarioLogeado");
+        localStorage.setItem("userId", res.data.user.id);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem(
-          "userId",
-          res.data.user.id
-        );
-        Navigate("/");
+        Swal.fire({
+          icon: "success",
+          title: "Inicio de sesion exitoso",
+          text: "Haz iniciado sesion correctamente, ¡esperamos que disfrutes la página!",
+          confirmButtonText: "Ok",
+        }).then((res) => {
+          if (res.isConfirmed) {
+            Navigate("/");
+          }
+        })
       })
       .catch((error) => {
-        if (error.response?.status === 404) alert("credenciales invalidas");
+        if (error.response?.status === 400) {
+          Swal.fire({
+            icon: "error",
+            title: "Información invalida",
+            text: "¡Intenta de nuevo!. Siempre puedes provar con el email de prueba",
+          })
+        };
         console.log(error.response);
       });
   };

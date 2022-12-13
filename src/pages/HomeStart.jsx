@@ -64,32 +64,34 @@ const HomeStart = () => {
 
 
   const userId = localStorage.getItem("userId")
+  const token = localStorage.getItem("token");
 
   const pageDetail = (idProd) => {
-    if (userId !== null) {
+    if (token !== null) {
       navigate(`/product/${idProd}`)
     }else{
       Swal.fire({
         icon: "warning",
-        title: "Registrate!",
-        text: "Para poder realizar esta acción necesitas registrarte en el sitio.",
+        title: "¡Registrate!",
+        text: "Para poder realizar esta acción necesitas estar registrado en el sitio.",
+        showDenyButton: true,
+        denyButtonText: "No gracias!",
         confirmButtonText: "Ok",
-        cancelButtonText: "No quiero registrarme",
       }).then(res => {
         if(res.isConfirmed) {
           navigate("/login");
         }else{
           Swal.fire({
             icon: "info",
-            title: "Registro no deseado",
-            text: "Haz decidido no registrarte pero tranquil@ siempre puedes volver a intentarlo"
+            title: "Registro denegado",
+            text: "¡No te preocupes!, podras registrarte cuando quieras",
           })
         }
       })
     }
   }
   const addProductInCart = (idProd) => {
-    if (userId !== null) {
+    if (token !== null) {
       const dataProduct = {
         quantity: 1,
         status: true,
@@ -97,6 +99,25 @@ const HomeStart = () => {
       }
       dispatch(addProductCar(userId, dataProduct))
       dispatch(setShooping())
+    }else{
+      Swal.fire({
+        icon: "warning",
+        title: "¡Registrate!",
+        text: "Para poder realizar esta acción necesitas estar registrado en el sitio.",
+        showDenyButton: true,
+        denyButtonText: "No gracias!",
+        confirmButtonText: "Ok",
+      }).then(res => {
+        if(res.isConfirmed) {
+          navigate("/login");
+        }else{
+          Swal.fire({
+            icon: "info",
+            title: "Registro denegado",
+            text: "¡No te preocupes!, podras registrarte cuando quieras",
+          })
+        }
+      })
     }
   }
 

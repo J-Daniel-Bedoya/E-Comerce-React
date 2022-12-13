@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 import '../styles/Login/Logins/createAccount.css';
 
 const CreateAccount = () => {
@@ -13,12 +14,23 @@ const CreateAccount = () => {
   const submit = (data) => {
     axios.post(`${apiEcommerce}/users`, data)
       .then(res => {
-        alert("usuario registado")
-        clear()
-        Navigate("/login")
+        Swal.fire({
+          icon: "success",
+          title: "Registro exitoso",
+          text: "Los datos ha sido introducidos a nuestra base de datos correctamente.",
+        }).then(res => {
+          if(res.isConfirmed){
+            clear()
+            Navigate("/login")
+          }
+        })
       })
       .catch(error => {
-        alert("error al crear el usuario!")
+        Swal.fire({
+          icon: "error",
+          title: "Error al registrarse",
+          text: "Haz introducido datos no válidos. ¡Vuelve a intentarlo!",
+        })
       })
   }
 
