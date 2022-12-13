@@ -6,8 +6,8 @@ import '../styles/Home/HomeStart.css'
 import '../styles/navbar/Navbar.css'
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { useState } from "react";
 import { setIsLogout } from "../store/slices/isLogout.slice";
+import { getProductsThunk } from "../store/slices/products.slice";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const NavBar = () => {
         localStorage.setItem("token", "null")
         localStorage.setItem("userId", "null")
         dispatch(setIsLogout(true))
+        dispatch(getProductsThunk())
         Swal.fire({
           icon: "info",
           title: "Logout exitoso",
