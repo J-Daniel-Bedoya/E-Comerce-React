@@ -33,7 +33,7 @@ const NavBar = () => {
           icon: "info",
           title: "Logout exitoso",
           text: "Haz salido de la página correctamente",
-          timer: 3000,
+          timer: 3000
         })
       }
     })
