@@ -19,7 +19,7 @@ const ProductsDetails = () => {
   const suggestionProducts = productList.filter(
     (product) => product.category.name_category === productDetail.category.name_category
   ); 
- console.log(productList)
+ 
   const userId = localStorage.getItem("userId")
 
   const addCartSubmit = (id, amount) =>{

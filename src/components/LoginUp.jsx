@@ -1,15 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { setIsLogout } from "../store/slices/isLogout.slice";
 import "../styles/Login/Logins/LoginUp.css";
 
 const LoginUp = () => {
   const [isVisible, setIsVisible] = useState(true);
   const { register, handleSubmit } = useForm();
   const Navigate = useNavigate();
-
+  const dispatch = useDispatch();
   // funcion que inicia sesion el cuenta
   const submit = (data) => {
     axios
@@ -27,6 +29,7 @@ const LoginUp = () => {
           confirmButtonText: "Ok",
         }).then((res) => {
           if (res.isConfirmed) {
+            dispatch(setIsLogout(false));
             Navigate("/");
           }
         })

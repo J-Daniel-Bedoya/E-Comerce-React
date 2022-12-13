@@ -34,7 +34,7 @@ const HomeStart = () => {
   useEffect(() => {
     setSearchProductsFilter(products);
   }, [products]);
-// console.log(products)
+
   const filterId = (id) => {
     if ( id !== "Cameras" ) {
       const filterId = products.filter(fil => fil.category.name_category === id)
@@ -67,7 +67,8 @@ const HomeStart = () => {
   const token = localStorage.getItem("token");
 
   const pageDetail = (idProd) => {
-    if (token !== null) {
+    console.log(token)
+    if (token !== null && token !== "null") {
       navigate(`/product/${idProd}`)
     }else{
       Swal.fire({
@@ -91,7 +92,7 @@ const HomeStart = () => {
     }
   }
   const addProductInCart = (idProd) => {
-    if (token !== null) {
+    if (token !== null && token !== "null") {
       const dataProduct = {
         quantity: 1,
         status: true,
@@ -195,6 +196,9 @@ const HomeStart = () => {
 
               <div className="products__container--imag" onClick={() => pageDetail(product.id)}>
                 <img className="ImageeProduct" src={product.image[0]} alt="" />
+                <div className="products__stock">
+                  <p>{product.availableQty}</p>
+                </div>
               </div>
 
               <div className="products__info">

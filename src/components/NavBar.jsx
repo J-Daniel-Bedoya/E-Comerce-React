@@ -4,29 +4,67 @@ import { setShooping } from "../store/slices/shoopingTrue.slice";
 import { getAddProduct } from "../store/slices/ProductCar.slice";
 import '../styles/Home/HomeStart.css'
 import '../styles/navbar/Navbar.css'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import { setIsLogout } from "../store/slices/isLogout.slice";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  
   const navigate = useNavigate();
+  const isLogout = useSelector(state => state.isLogout);
+  // const [isLogut, setIsLogout] = useState(true);
   const logout = () =>{
-    localStorage.setItem("token", "")
-    localStorage.setItem("User Name", "")
+    Swal.fire({
+      icon: "question",
+      title: "Logout",
+      text: "¿Deseas salir de la página?",
+      confirmButtonText: "Yes",
+      showCancelButton: true,
+      cancelButtonText: "No",
+    }).then(res => {
+      if (res.isConfirmed) {
+        localStorage.setItem("token", "null")
+        localStorage.setItem("userId", "null")
+        dispatch(setIsLogout(true))
+        Swal.fire({
+          icon: "info",
+          title: "Logout exitoso",
+          text: "Haz salido de la página correctamente",
+          timer: 3000,
+        })
+      }
+    })
   }
+
+
   const userId = localStorage.getItem("userId");
   const shoping = () => {
-    if (userId !== null) {
+    if (userId !== null && userId !== "null") {
       dispatch(setShooping())
       dispatch(getAddProduct(userId))
     }else{
-      alert("Inicia sesion para acceder a todas las caracteristicas", navigate("/login"))
+      Swal.fire({
+        icon: "warning",
+        title: "¡Registrate!",
+        text: "Para poder realizar esta acción necesitas estar registrado en el sitio.",
+        showDenyButton: true,
+        denyButtonText: "No gracias!",
+        confirmButtonText: "Ok",
+      }).then(res => {
+        if(res.isConfirmed) {
+          navigate("/login");
+        }else{
+          Swal.fire({
+            icon: "info",
+            title: "Registro denegado",
+            text: "¡No te preocupes!, podras registrarte cuando quieras",
+          })
+        }
+      })
     }
   }
-  // const purch = () => {
-  //   dispatch(purchasesThunk(userId));
-  //   console.log(userId)
-  // }
+ 
   
   return (
     <div className="Navbar" >
@@ -39,9 +77,18 @@ const NavBar = () => {
         </div>
       </Link>
       <div className="nav__icons--liksPages">
-        <Link to="/login" onClick={() => logout()}  className="nav__icons LOGOUT">
-          <p><i className="fa-solid fa-user nav__icon"></i></p>
-        </Link>
+        {
+          isLogout ? (
+            <Link to="/login" className="nav__icons LOGOUT">
+              <p><i className="fa-solid fa-user nav__icon"></i></p>
+            </Link>
+          ) : (
+            <Link to="#" onClick={() => logout()} className="nav__icons LOGOUT">
+              <p><i class="fa-solid fa-right-from-bracket nav__icon"></i></p>
+            </Link>
+          )
+
+        }
         <Link to={"/purchases"} className="nav__icons purchases">
             <i className="fa-solid fa-bag-shopping nav__icon"></i>
         </Link>

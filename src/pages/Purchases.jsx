@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Purchases/Purchases.css'
 import Fecha from '../components/Fecha';
-import getConfig from '../utils/getConfig';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { purchasesThunk } from '../store/slices/purchases.slice';
 
 const Purchases = () => {
   
-
-  const [purchases, setPurchases] = useState([]);
-  const apiPurchase = "https://api-e-commerce-production.up.railway.app/api/v1";
+  const dispatch = useDispatch();
+  const purchases = useSelector(state => state.purchases);
+  
   const userId = localStorage.getItem("userId");
   useEffect(() => {
-    axios.get(`${apiPurchase}/users/${userId}/orders`, getConfig())
-    .then((res) => {
-      setPurchases(res.data)
-      console.log(res.data)
-    })
-    .catch((err) => {
-      throw(err)
-    })
-  }, [])
+    dispatch(purchasesThunk(userId));
+  }, [purchases])
   
-
 
   return (
     <div className='Container__Purchases'>

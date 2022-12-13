@@ -50,6 +50,18 @@
   height: 70%;
   object-fit: contain;
 }
+
+.products__stock{
+  background: linear-gradient(#0d9fe7, #31079c);
+  position: absolute;
+  top: 1rem;
+  right: -.6rem;
+  z-index: 20;
+  padding: 2px 6px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: bold;
+}
 .products__info{
   display: flex;
   flex-direction: column;
