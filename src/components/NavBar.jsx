@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { setShooping } from "../store/slices/shoopingTrue.slice";
 import { getAddProduct } from "../store/slices/ProductCar.slice";
 import '../styles/Home/HomeStart.css'
@@ -28,6 +28,7 @@ const NavBar = () => {
         localStorage.setItem("userId", "null")
         dispatch(setIsLogout(true))
         dispatch(getProductsThunk())
+        navigate("/")
         Swal.fire({
           icon: "info",
           title: "Logout exitoso",
