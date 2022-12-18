@@ -22,7 +22,7 @@ const Purchases = () => {
     <div className='Container__Purchases'>
       <h1 className='purchases__title' >Purchases</h1>
       {
-        purchases.purchased.length !== 0 ? (
+        purchases.purchased?.length !== 0 ? (
           purchases.purchased?.map((purchase,i) => (
             <div className='card__purchases' key={i}>
               <Fecha purchaseDate={purchase?.createdAt} />
