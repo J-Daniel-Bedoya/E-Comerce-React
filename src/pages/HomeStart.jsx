@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { addProductCar } from "../store/slices/ProductCar.slice";
 import { setShooping } from "../store/slices/shoopingTrue.slice";
 import Swal from "sweetalert2";
+import { useRef } from "react";
 
 const HomeStart = () => {
   const apiEcommerce = "https://api-e-commerce-production.up.railway.app/api/v1/";
@@ -50,16 +51,45 @@ const HomeStart = () => {
     })
     setSearchProductsFilter(filterPrice)
   }
-  const filterName = () => {
-    const nameInput = searchProductName.toLowerCase()
-    const filterName = products.filter( product => { 
-      return product.name.toLowerCase().includes(nameInput)
-    })
-    if (filterName[0].name.includes(searchProductName)){
-      setSearchProductsFilter(filterName)
+  // filtrado por nombre
+  const [busquedaActiva, setBusquedaActiva] = useState(null)
+  const [isFocus, setIsFocus] = useState(false)
+  const [placeHolder, setPlaceHolder] = useState("Copia el titulo completo del producto")
+  let nameInput = searchProductName.toLowerCase();
+
+  useEffect(() => {
+    if (nameInput.length > 0) {
+      setIsFocus(true)
     }else{
-      alert("El producto no existe")
+      setIsFocus(false)
     }
+    // console.log(nameInput)
+    const filterName = products.filter( product => { 
+      const recorte = product.name.toLowerCase().slice(0, nameInput.length);
+      return recorte.includes(nameInput);
+    })
+    const names = [];
+    filterName.map(name => {
+      names.push(name.name);
+    })
+    setBusquedaActiva(names)
+    // console.log(n)
+  }, [nameInput])
+
+  const inputRef = useRef()
+
+  const filterName = async(name) => {
+    setSearchProductName("")
+    setIsFocus(false)
+    // nameInput = ""
+    setPlaceHolder(name)
+    const nameInput = name?.toLowerCase();
+    products.filter( (product) => { 
+      const tru = product.name.toLowerCase().includes(nameInput)
+      if (tru) {
+        setSearchProductsFilter([product])
+      }
+    })
   }
 
 
@@ -178,19 +208,31 @@ const HomeStart = () => {
       </div>
       {/* todos los productos */}
       <div className="products">
-        <div className="products__input--container">
-          <input 
-            className="products__input" 
-            type="text" 
-            value={searchProductName}
-            onChange={e => setSearchProductName(e.target.value)}
-            placeholder={"Copia el titulo completo del producto"}
-          />
-          <button onClick={filterName} className="products__input--btn"><i className="fa-solid fa-magnifying-glass"></i></button>
+        <div className="prouduts__busqueda">
+          <form onSubmit={filterName} className="products__input--container">
+            <input 
+              ref={inputRef}
+              className="products__input" 
+              type="text" 
+              value={searchProductName}
+              onChange={e => setSearchProductName(e.target.value)}
+              placeholder={placeHolder}
+            />
+            <button type="submit" className="products__input--btn"><i className="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+          <div className="products__busqueda--names" style={{display: isFocus && "block"}}>
+            {
+              busquedaActiva?.map((table, i) => (
+                <div key={i} className="products__busqueda--name">
+                  <p onClick={() => filterName(table)}>{table}</p>
+                </div>
+              ))
+            }
+          </div>
         </div>
         <div className="products__container--cards" >
           {
-          searchProductsFilter.map((product) => (
+          searchProductsFilter?.map((product) => (
             <div className="products__cards" key={product.id}>
               {/* quise hacer que las card fueran clicables y que al hacer click muestren el producto en detalle */}
 
